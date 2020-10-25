@@ -11,7 +11,7 @@ export class Group {
   @Column({
     type: 'timestamp',
     name: 'create_at',
-    default: () => 'CURRENT_TIMESTAMP',
+    default: () => 'CURRENT_TIMESTAMP()',
   })
-  createAt: string;
+  createAt: Date;
 }
