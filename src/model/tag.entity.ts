@@ -7,4 +7,7 @@ export class Tag {
 
   @Column({ type: 'int' })
   recordId: number;
+
+  @Column({ type: 'varchar', unique: true })
+  name: string;
 }

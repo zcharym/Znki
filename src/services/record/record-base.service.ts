@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRecordDto } from 'src/controllers/record/dto/create-record.dto';
 import { Record } from 'src/model';
@@ -28,6 +28,10 @@ export class RecordBaseService {
       });
     } catch (e) {
       Logger.error(e, RecordBaseService.name, 'record creating error');
+      throw new HttpException(
+        'record creating error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 }
