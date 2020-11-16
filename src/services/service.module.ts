@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ENTITES } from 'src/model';
-import { RecordBaseService } from './record';
+import { RecordService } from './record.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature(ENTITES)],
-  providers: [RecordBaseService],
-  exports: [RecordBaseService],
+  providers: [RecordService],
+  exports: [RecordService],
 })
 export class ServiceModule {}
