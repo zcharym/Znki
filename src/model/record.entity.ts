@@ -1,7 +1,8 @@
+import { BaseEntity } from './base.entity';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Record {
+export class Record extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -16,21 +17,6 @@ export class Record {
 
   @Column({ type: 'int', name: 'repo_id', nullable: true })
   repoId: number;
-
-  @Column({
-    type: 'timestamp',
-    name: 'create_at',
-    default: () => 'CURRENT_TIMESTAMP()',
-  })
-  creatAt: Date;
-
-  @Column({
-    type: 'timestamp',
-    name: 'update_at',
-    default: () => 'CURRENT_TIMESTAMP()',
-    onUpdate: 'CURRENT_TIMESTAMP()',
-  })
-  updateAt: Date;
 
   @Column({ type: 'boolean', default: false })
   isRemembered: boolean;
