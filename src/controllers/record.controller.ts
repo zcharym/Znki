@@ -15,6 +15,15 @@ import {
   model: {
     type: Record,
   },
+  routes: {
+    only: [
+      'createOneBase',
+      'replaceOneBase',
+      'deleteOneBase',
+      'getOneBase',
+      'getManyBase',
+    ],
+  },
 })
 @ApiTags('Record')
 @Controller('record')

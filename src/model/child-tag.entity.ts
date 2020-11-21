@@ -2,9 +2,9 @@ import { BaseEntity } from './base.entity';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Tag extends BaseEntity {
+export class ChildTag extends BaseEntity {
   @Column({ type: 'int' })
-  recordId: number;
+  tagId: number;
 
   @Column({ type: 'varchar' })
   name: string;
