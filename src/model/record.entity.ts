@@ -1,23 +1,36 @@
 import { BaseEntity } from './base.entity';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Group } from './group.entity';
+import { Tag } from './tag.entity';
+import { Type } from 'class-transformer';
+import { IsString, MinLength } from 'class-validator';
 
 @Entity()
 export class Record extends BaseEntity {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
-
   @Column({ type: 'varchar' })
+  @IsString()
+  @MinLength(1)
   zKey: string;
 
   @Column({ type: 'varchar' })
+  @IsString()
+  @MinLength(1)
   zValue: string;
 
   @Column({ type: 'int', default: 0 })
   priority: number;
 
-  @Column({ type: 'int', name: 'repo_id', nullable: true })
-  repoId: number;
+  @Column({ type: 'int', name: 'group_id' })
+  groupId: number;
+
+  @ManyToOne(() => Group, (c) => c.records)
+  @JoinColumn({ name: 'group_id' })
+  group?: Group;
 
   @Column({ type: 'boolean', default: false })
   isRemembered: boolean;
+
+  @OneToMany(() => Tag, (c) => c.record)
+  @Type(() => Tag)
+  tags: Tag[];
 }
