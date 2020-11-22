@@ -1,14 +1,30 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Exclude, Expose } from 'class-transformer';
-import { CommonResponseDto } from '../../../shared/interface/common-response.dto';
-import { Record } from '../../../model';
+import { Type } from 'class-transformer';
+import { CommonListDto, CommonResponseDto } from '../../../shared/interface/common-response.dto';
+import { Group, Tag } from '../../../model';
 
-@Exclude()
-export class RecordsResponseDto extends CommonResponseDto<Record[]> {
-  @ApiProperty({ type: [Record] })
-  @Expose()
-  data: Record[];
+export class RecordDto {
+  @ApiProperty({ type: String })
+  zKey: string;
+  @ApiProperty({ type: String })
+  zValue: string;
+  @ApiProperty({ type: Number })
+  priority: number;
+  @ApiProperty({ type: Number })
+  groupId: number;
+  @ApiProperty({ type: Boolean })
+  isRemembered: boolean;
+  @ApiProperty({ type: [Tag] })
+  @Type(() => Tag)
+  tags: Tag[];
+  @ApiProperty({ type: Group })
+  @Type(() => Group)
+  group: Group;
 }
 
-
+export class RecordsResponseDto extends CommonResponseDto<CommonListDto<RecordDto[]>> {
+  @ApiProperty({ type: CommonListDto })
+  @Type(() => CommonListDto)
+  data: CommonListDto<RecordDto[]>;
+}
 

@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Group } from './group.entity';
 import { Tag } from './tag.entity';
 import { Type } from 'class-transformer';
-import { IsString, MinLength } from 'class-validator';
+import { IsNumber, IsString, MinLength } from 'class-validator';
 
 @Entity()
 export class Record extends BaseEntity {
@@ -18,6 +18,7 @@ export class Record extends BaseEntity {
   zValue: string;
 
   @Column({ type: 'int', default: 0 })
+  @IsNumber()
   priority: number;
 
   @Column({ type: 'int', name: 'group_id' })

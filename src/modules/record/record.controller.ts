@@ -17,9 +17,8 @@ import { RecordsResponseDto } from './dto/records-response.dto';
     exclude: ['groupId'],
     join: {
       group: {
+        exclude: ['id', 'createAt', 'updateAt'], // FIXME exclude not working
         eager: true,
-        alias: 'group',
-        exclude: ['id', 'createAt', 'updateAt'],
       },
       tags: {
         eager: true,

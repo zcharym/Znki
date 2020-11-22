@@ -4,11 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecordModule } from './modules/record/record.module';
+import { configPath } from './config/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['src/config/config.base.env', 'src/config/config.prod.env'],
+      envFilePath: [configPath],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
