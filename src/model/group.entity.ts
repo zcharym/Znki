@@ -11,4 +11,8 @@ export class Group extends BaseEntity {
   @OneToMany(() => Record, (u) => u.group)
   @Type(() => Record)
   records: Record[];
+
+  // @ManyToOne(() => User, user => user.groups,{nullable:false,eager:true})
+  // @JoinColumn({ name: "usre", referencedColumnName: "id" })
+  // user: User;
 }

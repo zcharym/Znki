@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecordModule } from './modules/record/record.module';
 import { configPath } from './config/config';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { configPath } from './config/config';
       },
     }),
     RecordModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

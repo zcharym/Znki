@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { CommonListDto, CommonResponseDto } from '../../../shared/interface/common-response.dto';
+import { CommonListDto, CommonResponseDto } from '../../../shared/interfaces/common-response.dto';
 import { Group, Tag } from '../../../model';
 
 export class RecordDto {

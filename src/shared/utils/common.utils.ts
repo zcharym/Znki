@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
 
-export const uuid = () => v4();
+export const uuidV4 = (): string => v4();
 
-export const isDev = () => process.env.NODE_ENV !== 'production';
+export const isDev = (): boolean => process.env.NODE_ENV !== 'production';

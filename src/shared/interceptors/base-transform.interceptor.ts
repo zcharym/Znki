@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { EResultMessage, IResult } from '../interface/ common.interface';
+import { IResult, ResultMessageEnum } from '../interfaces/ common.interface';
 
 @Injectable()
 export class BaseTransformInterceptor implements NestInterceptor {
@@ -13,15 +13,16 @@ export class BaseTransformInterceptor implements NestInterceptor {
 
         if (res.statusCode === HttpStatus.CREATED) {
           return {
-            code: 201,
+            statusCode: 201,
             message: 'created successfully',
+            data: data || null,
           };
         }
         // TODO implement res with different status code
         return {
           data,
-          message: EResultMessage.SUCCESS,
-          code: 200,
+          message: ResultMessageEnum.SUCCESS,
+          statusCode: 200,
         };
       }),
     );

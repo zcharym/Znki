@@ -1,4 +1,4 @@
-import { ValidationPipe, HttpException } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger/dist/document-builder';
 import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
@@ -16,6 +16,8 @@ async function bootstrap() {
   app.useGlobalInterceptors(new BaseTransformInterceptor());
   app.useGlobalInterceptors(new HttpExceptionFilter() as any);
 
+  // global middleware
+
   // swagger
   const options = new DocumentBuilder()
     .setTitle('Znki API')
@@ -29,4 +31,5 @@ async function bootstrap() {
     console.log(`Server is running on port:${port}`);
   });
 }
+
 bootstrap();

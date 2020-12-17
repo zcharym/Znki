@@ -1,10 +1,10 @@
-export enum EResultMessage {
+export enum ResultMessageEnum {
   SUCCESS = 'success',
   FAIL = 'fail'
 }
 
 export interface IResult<T> {
-  code: number;
+  statusCode: number;
   message: string;
   data?: T;
 }

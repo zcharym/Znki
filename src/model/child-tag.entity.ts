@@ -1,5 +1,5 @@
 import { BaseEntity } from './base.entity';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class ChildTag extends BaseEntity {
