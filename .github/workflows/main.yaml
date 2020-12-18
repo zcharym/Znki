@@ -1,0 +1,35 @@
+name: deploy to ecs
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      #       # download git submodule
+      #       - uses: srt32/git-actions@v0.0.3
+      #         with:
+      #           args: git submodule update --init --recursive
+      - name: use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.3
+      - name: install and build
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: true
+      # Deploy
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.ECS_SSH_TOKEN }}
+          ARGS: "-avzr --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.ECS_ADDRESS }}
+          REMOTE_USER: "root"
