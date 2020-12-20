@@ -39,7 +39,9 @@ jobs:
         with:
           local: package.json
           remote: ${{ secrets.APP_DIR }}
-          privateKey: ${{ secrets.ECS_SSH_TOKEN }}
+          host: ${{ secrets.ECS_HOST }}
+          username: ${{ secrets.ECS_USER }}
+          password: ${{ secrets.ECS_PWD }}
       - name: run docker scripts
         run: |
           sh ./scripts/deploy.sh
