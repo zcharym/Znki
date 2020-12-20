@@ -50,7 +50,7 @@ jobs:
         uses: fifsky/ssh-action@v0.0.4
         with:
           command: |
-            cd /root/docker_apps
+            cd /root/docker-apps
             sh deploy.sh
           host: ${{ secrets.ECS_HOST }}
           user: ${{ secrets.ECS_USER }}
