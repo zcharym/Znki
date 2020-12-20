@@ -16,6 +16,7 @@ const configPath =
   imports: [
     ConfigModule.forRoot({
       envFilePath: [configPath],
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -30,7 +31,7 @@ const configPath =
           database: configService.get('DB_NAME'),
           synchronize: configService.get('DB_SYNCHRONIZE'),
           autoLoadEntities: true,
-          logging: true,
+          logging: configService.get('DB_LOGGING'),
         };
       },
     }),
