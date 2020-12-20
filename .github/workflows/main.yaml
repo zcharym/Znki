@@ -38,7 +38,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@0.7.1
         with:
           local: package.json
-          remote: ${{ secoret.APP_DIR }}
+          remote: ${{ secrets.APP_DIR }}
           privateKey: ${{ secrets.ECS_SSH_TOKEN }}
       - name: run docker scripts
         run: |
