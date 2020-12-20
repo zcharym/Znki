@@ -4,8 +4,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecordModule } from './modules/record/record.module';
-import { configPath } from './config/config';
 import { UserModule } from './modules/user/user.module';
+
+const ENV = process.env.NODE_ENV;
+const configPath =
+  ENV === 'production'
+    ? 'src/config/config.prod.env'
+    : 'src/config/config.dev.env';
 
 @Module({
   imports: [
@@ -35,5 +40,4 @@ import { UserModule } from './modules/user/user.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-}
+export class AppModule {}

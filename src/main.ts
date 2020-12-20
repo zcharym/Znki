@@ -5,7 +5,6 @@ import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
 import { AppModule } from './app.module';
 import { BaseTransformInterceptor } from './shared/interceptors/base-transform.interceptor';
 import { HttpExceptionFilter } from './shared/interceptors/http-exception.filter';
-import { configPath } from './config/config';
 
 async function bootstrap() {
   const port = process.env.PORT || 3000;
@@ -30,7 +29,6 @@ async function bootstrap() {
 
   await app.listen(port, () => {
     console.log(`Server is running on port:${port}`);
-    console.log(`config path is:${configPath}`);
   });
 }
 
