@@ -5,6 +5,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RecordModule } from './modules/record/record.module';
 import { UserModule } from './modules/user/user.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 const ENV = process.env.NODE_ENV;
 const configPath =
@@ -34,6 +36,9 @@ const configPath =
           logging: configService.get('DB_LOGGING'),
         };
       },
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'static'),
     }),
     RecordModule,
     UserModule,

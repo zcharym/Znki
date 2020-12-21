@@ -1,4 +1,5 @@
 # compiled output
+/static/
 /dist
 /node_modules
 
