@@ -1,17 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Group, User } from '../../model';
+import { User } from '../../models/user.model';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { AppException } from '../../shared/exceptions/app.exception';
 
 @Injectable()
 export class UserService {
-
-  constructor(
-    @InjectRepository(User) private userRepo: Repository<User>,
-  ) {
-  }
+  constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
   // public async findAll(): Promise<User[]> {
   // }
@@ -24,9 +20,4 @@ export class UserService {
       throw new AppException();
     }
   }
-
-  public async getGroupsByUserId(userId: string): Promise<Group[]> {
-    return undefined;
-  }
-
 }

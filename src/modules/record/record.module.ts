@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
-import { RecordController } from './record.controller';
-import { RecordService } from './record.service';
+import { TagController } from './tag.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ENTITES } from '../../model';
+import { entities } from '../../models';
+import { TagService } from './tag.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature(ENTITES)],
-  providers: [RecordService],
-  controllers: [RecordController],
+  imports: [TypeOrmModule.forFeature(entities)],
+  providers: [TagService],
+  controllers: [TagController],
 })
-export class RecordModule {
-}
+export class RecordModule {}
