@@ -16,7 +16,10 @@ export class CardController {
   }
 
   @Get(':card_id')
-  @ApiOperation({ summary: 'get card info by card id' })
+  @ApiOperation({
+    summary: 'get card info by card id',
+    description: 'version 0.1',
+  })
   async getCardDetailById(
     @Param(
       'card_id',
