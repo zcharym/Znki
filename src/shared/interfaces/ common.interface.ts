@@ -1,6 +1,6 @@
 export enum ResultMessageEnum {
   SUCCESS = 'success',
-  FAIL = 'fail'
+  FAIL = 'fail',
 }
 
 export interface IResult<T> {

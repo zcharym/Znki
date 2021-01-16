@@ -1,10 +1,10 @@
 import { ApiTags } from '@nestjs/swagger';
 import { Controller } from '@nestjs/common';
 import { Crud } from '@nestjsx/crud';
-import { TagService } from './tag.service';
-import { Tag } from '../../models/tag.model';
-import { TagResDto } from './dto/tag-res.dto';
-import { CreateTagDto } from './dto/create-tag.dto';
+import { TagService } from '../service/tag.service';
+import { Tag } from '../../../models/tag.model';
+import { TagResDto } from '../dto/tag-res.dto';
+import { CreateTagDto } from '../dto/create-tag.dto';
 
 @Crud({
   model: {

@@ -1,11 +1,21 @@
-import { CallHandler, ExecutionContext, HttpStatus, Injectable, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  HttpStatus,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IResult, ResultMessageEnum } from '../interfaces/ common.interface';
+import { UniRes } from '../class/uni-res.class';
 
 @Injectable()
 export class BaseTransformInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<IResult<any>> {
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler,
+  ): Observable<IResult<any>> {
     return next.handle().pipe(
       map(data => {
         const http = context.switchToHttp();
@@ -19,11 +29,7 @@ export class BaseTransformInterceptor implements NestInterceptor {
           };
         }
         // TODO implement res with different status code
-        return {
-          data,
-          message: ResultMessageEnum.SUCCESS,
-          statusCode: 200,
-        };
+        return UniRes.ok(data);
       }),
     );
   }
