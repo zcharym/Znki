@@ -10,7 +10,7 @@ export class CardController {
 
   @Get()
   async getCards() {
-    return 'UniRes.created();';
+    return this.cardService.list();
   }
 
   @Post()

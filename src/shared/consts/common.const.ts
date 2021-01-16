@@ -1,9 +1,20 @@
 export enum RoleEnum {
   COMMON = 'common',
-  ADMIN = 'admin'
+  ADMIN = 'admin',
 }
 
 export enum AppErrorEnum {
-  UNKNOWN = 'unknown error'
+  UNKNOWN = 'unknown error',
 }
 
+export enum NoteTypeEnum {
+  TEXT,
+  IMAGE,
+}
+
+export enum CardStatusEnum {
+  NEW,
+  LEARNING,
+  REVIEW,
+  RELEARNING,
+}

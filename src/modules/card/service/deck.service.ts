@@ -9,6 +9,7 @@ import { Deck } from '../../../models/deck.model';
 @Injectable()
 export class DeckService {
   constructor(@InjectRepository(Deck) readonly deckRepo: Repository<Deck>) {}
+
   async createDeck(conf?: Record<string, unknown>): Promise<number> {
     const deck = await this.deckRepo.save({
       conf: JSON.stringify(conf || deckConfig.default),

@@ -1,11 +1,9 @@
 import { Column, Entity } from 'typeorm';
+
 import { BaseModel } from './base.model';
 
 @Entity('cards', { schema: 'znki' })
 export class Card extends BaseModel {
-  @Column('int', { name: 'nid', comment: 'note id' })
-  nid: number;
-
   @Column('int', { name: 'did', comment: 'deck id' })
   did: number;
 

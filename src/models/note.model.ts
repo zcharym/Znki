@@ -1,4 +1,5 @@
 import { Column, Entity } from 'typeorm';
+
 import { BaseModel } from './base.model';
 
 @Entity('notes', { schema: 'znki' })
@@ -6,12 +7,12 @@ export class Note extends BaseModel {
   @Column('int', { name: 'tid', comment: 'template id', default: () => "'0'" })
   tid: number;
 
-  @Column('int', {
-    name: 'csum',
-    nullable: true,
-    comment: 'use first 8 digits sha1 hash to check duplicate deck',
-  })
-  csum: number | null;
+  // @Column('int', {
+  //   name: 'csum',
+  //   nullable: true,
+  //   comment: 'use first 8 digits sha1 hash to check duplicate deck',
+  // })
+  // csum: number | null;
 
   @Column('varchar', { name: 'zkey', length: 255 })
   zkey: string;

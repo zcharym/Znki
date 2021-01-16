@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 
 import { UniRes } from '../class/uni-res.class';
-import { IResult } from '../interfaces/ common.interface';
+import { IResult } from '../interfaces/common.interface';
 
 @Injectable()
 export class BaseTransformInterceptor implements NestInterceptor {
