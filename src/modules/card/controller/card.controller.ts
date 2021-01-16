@@ -1,7 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+
 import { CardService } from '../service/card.service';
-import { UniRes } from '../../../shared/class/uni-res.class';
 
 @ApiTags('Card')
 @Controller('card')
@@ -11,5 +11,18 @@ export class CardController {
   @Get()
   async getCards() {
     return 'UniRes.created();';
+  }
+
+  @Post()
+  async addCard() {
+    throw new HttpException(
+      'Method not implement yet.',
+      HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+  }
+
+  @Put()
+  async updateCard() {
+    return;
   }
 }
