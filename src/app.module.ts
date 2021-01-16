@@ -1,12 +1,14 @@
+import { join } from 'path';
+
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CardModule } from './modules/card/card.module';
 import { UserModule } from './modules/user/user.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 
 const ENV = process.env.NODE_ENV;
 const configPath =
@@ -33,7 +35,7 @@ const configPath =
           database: configService.get('DB_NAME'),
           synchronize: configService.get('DB_SYNCHRONIZE'),
           autoLoadEntities: true,
-          logging: configService.get('DB_LOGGING'),
+          logging: true,
         };
       },
     }),
