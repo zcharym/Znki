@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { DeckService } from '../service/deck.service';
@@ -11,5 +11,11 @@ export class DeckController {
   @Post()
   async addDeck() {
     return this.deckService.createDeck();
+  }
+
+  // TODO add @User auth
+  @Get()
+  async getDecks() {
+    return this.deckService.list();
   }
 }

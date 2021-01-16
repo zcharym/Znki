@@ -16,4 +16,8 @@ export class DeckService {
     });
     return deck.id;
   }
+
+  async list() {
+    return this.deckRepo.find();
+  }
 }

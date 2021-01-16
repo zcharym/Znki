@@ -10,7 +10,7 @@ export class NoteController {
   constructor(private noteService: NoteService) {}
 
   @Post()
-  async addDeck(@Body() body: CreateNoteDto) {
+  async addNote(@Body() body: CreateNoteDto) {
     return this.noteService.createNote(body);
   }
 }

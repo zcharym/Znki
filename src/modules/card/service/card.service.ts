@@ -9,7 +9,10 @@ import { Card } from '../../../models/card.model';
 export class CardService {
   constructor(@InjectRepository(Card) readonly cardRepo: Repository<Card>) {}
 
-  async addCard() {}
+  async addCard(newCard: Partial<Card>): Promise<number> {
+    const card = await this.cardRepo.save(newCard);
+    return card.id;
+  }
 
   async list() {
     return this.cardRepo.find();

@@ -1,7 +1,8 @@
-import { Controller, Get, HttpException, HttpStatus, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CardService } from '../service/card.service';
+import { CreateCardDto } from '../dto/create-card.dto';
 
 @ApiTags('Card')
 @Controller('card')
@@ -14,11 +15,8 @@ export class CardController {
   }
 
   @Post()
-  async addCard() {
-    throw new HttpException(
-      'Method not implement yet.',
-      HttpStatus.INTERNAL_SERVER_ERROR,
-    );
+  async addCard(@Body() body: CreateCardDto) {
+    return this.cardService.addCard(body);
   }
 
   @Put()

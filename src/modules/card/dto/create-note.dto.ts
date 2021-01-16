@@ -2,7 +2,10 @@ import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-import { CardStatusEnum, NoteTypeEnum } from '../../../shared/consts/common.const';
+import {
+  CardStatusEnum,
+  NoteTypeEnum,
+} from '../../../shared/consts/common.const';
 
 export class CreateNoteDto {
   @ApiPropertyOptional({ type: Number, description: 'template id' })
@@ -19,7 +22,7 @@ export class CreateNoteDto {
   zValue: string;
 
   @ApiProperty({ type: Number, description: 'card id' })
-  @IsString()
+  @IsNumber()
   cid: number;
 
   @ApiProperty({ enum: CardStatusEnum, description: 'card status' })
