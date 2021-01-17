@@ -1,4 +1,5 @@
-import { IResult, ResultMessageEnum } from '../interfaces';
+import { ResultMessageEnum } from '../consts/common.const';
+import { IResult } from '../interfaces';
 
 export class UniRes<T> implements IResult<T> {
   statusCode: number;
@@ -13,6 +14,13 @@ export class UniRes<T> implements IResult<T> {
     };
   }
 
+  public static success(): IResult<void> {
+    return {
+      statusCode: 200,
+      message: ResultMessageEnum.SUCCESS,
+    };
+  }
+
   public static fail(message: string, statusCode?: number): IResult<null> {
     return {
       statusCode: statusCode || 500,
@@ -23,7 +31,7 @@ export class UniRes<T> implements IResult<T> {
 
   public static created(id?: string): IResult<string> {
     return {
-      statusCode: 200,
+      statusCode: 201,
       message: ResultMessageEnum.SUCCESS,
       data: id || '',
     };

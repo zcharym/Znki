@@ -1,4 +1,4 @@
-export enum RoleEnum {
+export enum ROLE {
   COMMON = 'common',
   ADMIN = 'admin',
 }
@@ -17,4 +17,18 @@ export enum CardStatusEnum {
   LEARNING,
   REVIEW,
   RELEARNING,
+}
+
+export enum APP_ERROR {
+  UNKNOWN = 'unknown error',
+}
+
+export enum USER_VALIDATION {
+  EMAIL = 'email',
+  NAME = 'name',
+}
+
+export enum ResultMessageEnum {
+  SUCCESS = 'success',
+  FAIL = 'fail',
 }

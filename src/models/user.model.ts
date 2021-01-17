@@ -1,20 +1,21 @@
 import { Column, Entity } from 'typeorm';
+
 import { BaseModel } from './base.model';
 
 @Entity('users', { schema: 'znki' })
 export class User extends BaseModel {
   @Column({ type: 'varchar' })
-  name: string;
+  username: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', select: false })
   pwd: string;
 
   @Column({ type: 'varchar', nullable: true, default: () => 'NULL' })
   avatar: string;
 
-  @Column({ type: 'varchar' })
-  mail: string;
+  @Column({ type: 'varchar', unique: true })
+  email: string;
 
-  @Column({ type: 'varchar' })
-  uid: string;
+  @Column({ type: 'varchar', nullable: true })
+  phone: string;
 }

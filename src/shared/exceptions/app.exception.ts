@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common';
-import { AppErrorEnum } from '../consts/common.const';
+import { APP_ERROR } from '../consts/common.const';
 
 export class AppException extends BadRequestException {
 
@@ -7,7 +7,7 @@ export class AppException extends BadRequestException {
     if (message) {
       super(message, error);
     } else {
-      super(AppErrorEnum.UNKNOWN);
+      super(APP_ERROR.UNKNOWN);
     }
   }
 }

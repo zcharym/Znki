@@ -1,4 +1,8 @@
-import { Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { JWTGuard } from 'src/modules/auth/jwt.guard';
+
+import {
+    Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CreateCardDto } from '../dto/create-card.dto';
@@ -10,6 +14,7 @@ export class CardController {
   constructor(private cardService: CardService) {}
 
   @Get()
+  @UseGuards(JWTGuard)
   @ApiOperation({ summary: 'get all cards' })
   async getCards() {
     return this.cardService.list();

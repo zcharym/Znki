@@ -1,5 +1,6 @@
-import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
-import { HttpException, InternalServerErrorException } from '@nestjs/common';
+import {
+    ArgumentsHost, Catch, ExceptionFilter, HttpException, InternalServerErrorException
+} from '@nestjs/common';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -11,11 +12,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response.status(status).send(json);
   }
 
-  prepareException(exc: any): { status: number; json: object } {
-    if (process.env.NODE_ENV !== 'test') {
-      console.log(exc);
-    }
-
+  prepareException(exc: any): { status: number; json: unknown } {
     const error =
       exc instanceof HttpException
         ? exc
