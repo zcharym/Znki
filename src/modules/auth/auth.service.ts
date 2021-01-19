@@ -14,14 +14,7 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  async validateUser(email: string, pwd: string): Promise<any> {
-    const user = await this.usersService.findOneByEmail(email);
-    if (user && user.pwd === '') {
-      const { pwd, ...result } = user;
-      return result;
-    }
-    return null;
-  }
+  // async validateUser(email: string, pwd: string): Promise<any> {}
 
   async login(user: any) {
     const payload = { username: user.username, sub: user.userId };
@@ -30,9 +23,7 @@ export class AuthService {
     };
   }
 
-  async logout(user: any) {
-    return;
-  }
+  // async logout(user: any) {}
 
   public getCookieWithJwtToken(userId: number): string {
     const payload: ITokenPayload = { userId };
