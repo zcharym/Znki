@@ -1,20 +1,31 @@
-import { JWTGuard } from 'src/modules/auth/jwt.guard';
-
 import {
-    Body, Controller, Get, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CreateCardDto } from '../dto/create-card.dto';
 import { CardService } from '../service/card.service';
+import { JWTGuard } from '../../auth/jwt.guard';
 
+/**
+ * TODO use guard to specific module
+ * https://stackoverflow.com/questions/56397944/how-to-provide-a-guard-for-a-specific-module-in-nest-js
+ */
+@UseGuards(JWTGuard)
 @ApiTags('Card')
 @Controller('card')
 export class CardController {
   constructor(private cardService: CardService) {}
 
   @Get()
-  @UseGuards(JWTGuard)
   @ApiOperation({ summary: 'get all cards' })
   async getCards() {
     return this.cardService.list();

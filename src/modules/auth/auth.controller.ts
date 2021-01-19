@@ -1,7 +1,14 @@
 import { Response } from 'express';
 
 import {
-    BadRequestException, Body, Controller, Get, Post, Req, Res, UseGuards
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -26,8 +33,7 @@ export class AuthController {
   @Get('/token')
   @UseGuards(JWTGuard)
   public async verifyToken(@Req() req: any) {
-    const user = req.user;
-    return user;
+    return req.user;
   }
 
   @Post('/login')

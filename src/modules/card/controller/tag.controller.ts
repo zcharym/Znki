@@ -1,10 +1,11 @@
 import { ApiTags } from '@nestjs/swagger';
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { Crud } from '@nestjsx/crud';
 import { TagService } from '../service/tag.service';
 import { Tag } from '../../../models/tag.model';
 import { TagResDto } from '../dto/tag-res.dto';
 import { CreateTagDto } from '../dto/create-tag.dto';
+import { JWTGuard } from '../../auth/jwt.guard';
 
 @Crud({
   model: {
@@ -43,6 +44,7 @@ import { CreateTagDto } from '../dto/create-tag.dto';
 })
 @ApiTags('Tag')
 @Controller('tag')
+@UseGuards(JWTGuard)
 export class TagController {
   constructor(private service: TagService) {}
 }

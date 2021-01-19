@@ -1,6 +1,11 @@
 import { Repository } from 'typeorm';
 
-import { ForbiddenException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { User } from '../../models/user.model';
@@ -23,7 +28,7 @@ export class UserService {
   public async getUserById(id: number): Promise<User> {
     const user = this.userRepo.findOne({ id });
     if (!user) {
-      throw new NotFoundException('User with this id does not exist');
+      throw new NotFoundException('AuthUser with this id does not exist');
     }
     return user;
   }

@@ -1,11 +1,13 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CreateNoteDto } from '../dto/create-note.dto';
 import { NoteService } from '../service/note.service';
+import { JWTGuard } from '../../auth/jwt.guard';
 
 @ApiTags('Note')
 @Controller('note')
+@UseGuards(JWTGuard)
 export class NoteController {
   constructor(private noteService: NoteService) {}
 
