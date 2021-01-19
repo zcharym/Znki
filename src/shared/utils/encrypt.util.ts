@@ -2,7 +2,7 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import { SECRET_KEY } from 'src/config/config.json';
 
-export const baseEncrypt = (val: string) =>
+export const baseEncrypt = (val: string): string =>
   crypto
     .createHmac('sha256', SECRET_KEY)
     .update(val)
