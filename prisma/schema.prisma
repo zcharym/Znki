@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cards {
+  id        Int       @id @default(autoincrement())
+  did       Int
+  tid       Int       @default(-1)
+  type      Int       @default(0)
+  due       DateTime?
+  reviews   Int       @default(0)
+  create_at DateTime  @default(now())
+  update_at DateTime  @default(now())
+}
+
+model decks {
+  id          Int      @id @default(autoincrement())
+  version     Int      @default(0)
+  conf        String?
+  create_at   DateTime @default(now())
+  update_at   DateTime @default(now())
+  user_id     Int
+  is_pubic    Int      @default(0)
+  name        String
+  description String?
+}
+
+model notes {
+  id        Int      @id @default(autoincrement())
+  tid       Int      @default(0)
+  zkey      String
+  zValue    String
+  cid       Int
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+  type      Int      @default(0)
+}
+
+model tag_card {
+  id        Int      @id @default(autoincrement())
+  tid       Int
+  cid       Int
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+}
+
+model tags {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type      Int      @default(0)
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+}
+
+model users {
+  id        Int      @id @default(autoincrement())
+  uid       String   /// uuid for user
+  create_at DateTime @default(now())
+  update_at DateTime @default(now())
+  username  String
+  pwd       String
+  avatar    String?
+  email     String   @unique
+  phone     String?
+}

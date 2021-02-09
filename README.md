@@ -5,6 +5,7 @@
 > (server side of)flashcard app based on Anki.
 
 informed dependencies:
+
 - `nestjs`
 - `typeorm`
 - `@nestjs/swagger`,`@nestjsx/crud`
@@ -12,7 +13,7 @@ informed dependencies:
 ## Installation
 
 ```bash
-$ npm install
+npx prisma init
 ```
 
 ## Running the app
@@ -49,4 +50,4 @@ $ npm run test:cov
 
 ## License
 
-  Znki is [MIT licensed](LICENSE).
+Znki is [MIT licensed](LICENSE).
