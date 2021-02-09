@@ -11,6 +11,7 @@
     "build:ui": "rimraf static && cd ui && npm run build && cd -",
     "build:all": "nest build && nest build:ui",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "poststart": "rimraf ./node_modules/.prisma && npx prisma generate",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -31,10 +32,6 @@
     "@nestjs/platform-express": "^7.6.5",
     "@nestjs/serve-static": "^2.1.4",
     "@nestjs/swagger": "^4.7.11",
-    "@nestjs/typeorm": "^7.1.5",
-    "@nestjsx/crud": "^4.6.2",
-    "@nestjsx/crud-request": "^4.6.2",
-    "@nestjsx/crud-typeorm": "^4.6.2",
     "@prisma/client": "^2.16.1",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.1",
@@ -50,8 +47,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "swagger-ui-express": "^4.1.6",
-    "typeorm": "^0.2.30"
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.4",

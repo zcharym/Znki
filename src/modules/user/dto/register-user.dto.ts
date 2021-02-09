@@ -1,11 +1,11 @@
 import { Transform } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-
 import { ApiProperty } from '@nestjs/swagger';
-
 import { baseEncrypt } from '../../../shared/utils/encrypt.util';
+// import * as prisma from '@prisma/client';
+import { UserCreateInput } from '@prisma/client';
 
-export class RegisterUserDto {
+export class RegisterUserDto extends UserCreateInput {
   @ApiProperty()
   @IsString()
   @IsNotEmpty({ message: 'username cant be empty' })

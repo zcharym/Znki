@@ -8,6 +8,7 @@ informed dependencies:
 
 - `nestjs`
 - `typeorm`
+- `prisma`
 - `@nestjs/swagger`,`@nestjsx/crud`
 
 ## Installation

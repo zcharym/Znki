@@ -1,7 +1,5 @@
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
-
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-
 import { NoteTypeEnum } from '../../../shared/consts/common.const';
 
 export class CreateNoteDto {
