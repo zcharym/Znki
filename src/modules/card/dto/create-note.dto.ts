@@ -1,21 +1,23 @@
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { NoteTypeEnum } from '../../../shared/consts/common.const';
-import { Prisma } from '@prisma/client';
+import { NoteTypeEnum, Prisma } from '@prisma/client';
 
-export class CreateNoteDto implements Prisma.NoteCreateInput {
+export class CreateNoteDto implements Omit<Prisma.NoteCreateInput, 'card'> {
   @ApiPropertyOptional({ type: Number, description: 'template id' })
   @IsNumber()
   @IsOptional()
   tid?: number;
 
-  @ApiProperty({ type: String, description: '' })
+  @ApiProperty({ type: String, description: 'note content' })
   @IsString()
-  zkey: string;
-
-  @ApiProperty({ type: String, description: '' })
-  @IsString()
-  zValue: string;
+  @IsNotEmpty()
+  content: string;
 
   @ApiProperty({ type: Number, description: 'card id' })
   @IsNumber()
@@ -23,5 +25,5 @@ export class CreateNoteDto implements Prisma.NoteCreateInput {
 
   @ApiProperty({ enum: NoteTypeEnum, description: 'note type' })
   @IsEnum(NoteTypeEnum)
-  noteType: NoteTypeEnum;
+  type: NoteTypeEnum;
 }

@@ -12,8 +12,8 @@ model Card {
   id        Int        @id @default(autoincrement())
   did       Int
   tid       Int        @default(-1)
-  type      Int        @default(0)
-  content   String
+  title     String
+  status    CardStatusEnum @default(NEW)
   due       DateTime?
   reviews   Int        @default(0)
   createAt  DateTime   @default(now()) @map(name:"create_at")
@@ -44,7 +44,7 @@ model Note {
   cid       Int
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")
-  type      Int      @default(0)
+  type      NoteTypeEnum      @default(TEXT)
   card      Card     @relation(fields: [cid], references: [id])
 
   @@map(name:"notes")
@@ -80,4 +80,16 @@ model User {
   phone     String?
 
   @@map(name:"users")
+}
+
+enum NoteTypeEnum {
+  TEXT
+  IMAGE
+}
+
+enum CardStatusEnum {
+  NEW
+  LEARNING
+  REVIEW
+  RELEARNING
 }

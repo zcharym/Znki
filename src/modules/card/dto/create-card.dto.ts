@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { IsNumber, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCardDto implements Prisma.CardCreateInput {
   @ApiProperty({ type: Number, description: 'deck id' })
@@ -11,4 +11,9 @@ export class CreateCardDto implements Prisma.CardCreateInput {
   @IsNumber()
   @IsOptional()
   tid?: number;
+
+  @ApiProperty({ type: String, description: 'question of this card' })
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 }

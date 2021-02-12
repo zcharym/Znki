@@ -7,18 +7,6 @@ export enum AppErrorEnum {
   UNKNOWN = 'unknown error',
 }
 
-export enum NoteTypeEnum {
-  TEXT,
-  IMAGE,
-}
-
-export enum CardStatusEnum {
-  NEW,
-  LEARNING,
-  REVIEW,
-  RELEARNING,
-}
-
 export enum APP_ERROR {
   UNKNOWN = 'unknown error',
 }
