@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Card } from '@prisma/client';
+import { Card, Prisma } from '@prisma/client';
 import { DbService } from 'src/shared/db/db.service';
 
 @Injectable()
 export class CardService {
   constructor(private db: DbService) {}
 
-  async addCard(newCard: Partial<Card>): Promise<number> {
+  async addCard(newCard: Prisma.CardCreateInput): Promise<number> {
     const card = await this.db.card.create({
       data: newCard,
     });

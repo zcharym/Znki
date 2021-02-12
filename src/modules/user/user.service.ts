@@ -4,11 +4,10 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-
 import { AppException } from '../../shared/exceptions/app.exception';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { DbService } from 'src/shared/db/db.service';
-import * as prisma from '@prisma/client';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -17,9 +16,7 @@ export class UserService {
   public async createUser(user: RegisterUserDto): Promise<void> {
     try {
       await this.db.user.create({
-        data: {
-          user,
-        },
+        data: user,
       });
     } catch (e) {
       Logger.error(e);
@@ -27,7 +24,7 @@ export class UserService {
     }
   }
 
-  public async getUserById(id: number): Promise<prisma.User> {
+  public async getUserById(id: number): Promise<User> {
     const user = this.db.user.findFirst({ where: { id } });
     if (!user) {
       throw new NotFoundException('AuthUser with this id does not exist');
@@ -35,10 +32,11 @@ export class UserService {
     return user;
   }
 
-  public async validateUser(email: string, pwd: string): Promise<prisma.User> {
+  public async validateUser(email: string, pwd: string): Promise<User> {
     const user = await this.db.user.findFirst({
       where: {
-        email: email,
+        email,
+        pwd,
       },
     });
     if (!user) {
@@ -47,7 +45,7 @@ export class UserService {
     return user;
   }
 
-  public async findOneByEmail(email: string): Promise<prisma.User | undefined> {
+  public async findOneByEmail(email: string): Promise<User | undefined> {
     return this.db.user.findFirst({
       where: {
         email: {

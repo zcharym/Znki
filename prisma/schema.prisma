@@ -9,12 +9,12 @@ datasource db {
 
 /// basic unit for memorizing
 model Card {
-  id        Int       @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   did       Int
-  tid       Int       @default(-1)
-  type      Int       @default(0)
+  tid       Int        @default(-1)
+  type      Int        @default(0)
   due       DateTime?
-  reviews   Int       @default(0)
+  reviews   Int        @default(0)
   createAt  DateTime   @default(now()) @map(name:"create_at")
   updateAt  DateTime   @default(now()) @map(name:"update_at")
 
@@ -22,13 +22,13 @@ model Card {
 }
 
 model Deck {
-  id          Int      @id @default(autoincrement())
-  version     Int      @default(0)
+  id          Int       @id @default(autoincrement())
+  version     Int       @default(0)
   conf        String?
-  createAt    DateTime @default(now()) @map(name:"create_at")
-  updateAt    DateTime @default(now()) @map(name:"update_at")
+  createAt    DateTime  @default(now()) @map(name:"create_at")
+  updateAt    DateTime  @default(now()) @map(name:"update_at")
   userId      Int       @map(name:"user_id")
-  isPubic     Int       @default(0) @map(name:"is_pubic")
+  isPublic    Boolean   @default(false) @map(name:"is_pubic")
   name        String
   description String?
 

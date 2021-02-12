@@ -12,11 +12,6 @@
     "baseUrl": "./",
     "incremental": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "paths": {
-      "@prisma-gen": [
-        "./node_modules/.prisma/client/index"
-      ]
-    }
+    "esModuleInterop": true
   }
 }

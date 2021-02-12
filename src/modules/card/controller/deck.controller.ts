@@ -3,8 +3,8 @@ import { CreateDeckDto } from '../dto/create-deck.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { DeckService } from '../service/deck.service';
 import { JWTGuard } from '../../auth/jwt.guard';
-import { User } from '../../../models/user.model';
 import { AuthUser } from '../../../shared/decorators/auth-user.decorator';
+import { User } from '@prisma/client';
 
 @ApiTags('Deck')
 @Controller('deck')

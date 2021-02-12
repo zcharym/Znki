@@ -10,6 +10,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { CardModule } from './modules/card/card.module';
 import { UserModule } from './modules/user/user.module';
+import { DbModule } from './shared/db/db.module';
 
 const ENV = process.env.NODE_ENV;
 const configPath =
@@ -19,6 +20,7 @@ const configPath =
 
 @Module({
   imports: [
+    DbModule,
     ConfigModule.forRoot({
       envFilePath: [configPath],
       isGlobal: true,

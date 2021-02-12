@@ -2,10 +2,8 @@ import { Transform } from 'class-transformer';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { baseEncrypt } from '../../../shared/utils/encrypt.util';
-// import * as prisma from '@prisma/client';
-import { UserCreateInput } from '@prisma/client';
-
-export class RegisterUserDto extends UserCreateInput {
+import { nanoid } from 'nanoid';
+export class RegisterUserDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty({ message: 'username cant be empty' })
@@ -18,4 +16,7 @@ export class RegisterUserDto extends UserCreateInput {
   @IsString()
   @Transform(val => baseEncrypt(val))
   readonly pwd: string;
+
+  @Transform(() => nanoid(8))
+  readonly uid: string;
 }

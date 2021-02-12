@@ -1,8 +1,9 @@
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NoteTypeEnum } from '../../../shared/consts/common.const';
+import { Prisma } from '@prisma/client';
 
-export class CreateNoteDto {
+export class CreateNoteDto implements Prisma.NoteCreateInput {
   @ApiPropertyOptional({ type: Number, description: 'template id' })
   @IsNumber()
   @IsOptional()
