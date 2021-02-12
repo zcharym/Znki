@@ -13,6 +13,7 @@ model Card {
   did       Int
   tid       Int        @default(-1)
   type      Int        @default(0)
+  content   String
   due       DateTime?
   reviews   Int        @default(0)
   createAt  DateTime   @default(now()) @map(name:"create_at")
@@ -39,8 +40,7 @@ model Deck {
 model Note {
   id        Int      @id @default(autoincrement())
   tid       Int      @default(0)
-  zkey      String
-  zValue    String
+  content   String
   cid       Int
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")
