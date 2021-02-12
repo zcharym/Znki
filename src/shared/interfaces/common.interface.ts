@@ -8,7 +8,7 @@ export interface IResult<T> {
 }
 
 export interface ITokenPayload {
-  userId: number;
+  userId: string;
 }
 
 export interface IRequest extends Request {

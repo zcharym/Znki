@@ -17,6 +17,7 @@ model Card {
   reviews   Int        @default(0)
   createAt  DateTime   @default(now()) @map(name:"create_at")
   updateAt  DateTime   @default(now()) @map(name:"update_at")
+  notes     Note[]
 
   @@map(name:"cards")
 }
@@ -44,6 +45,7 @@ model Note {
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")
   type      Int      @default(0)
+  card      Card     @relation(fields: [cid], references: [id])
 
   @@map(name:"notes")
 }

@@ -8,6 +8,7 @@ import { AppException } from '../../shared/exceptions/app.exception';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { DbService } from 'src/shared/db/db.service';
 import { User } from '@prisma/client';
+import { nanoid } from 'nanoId';
 
 @Injectable()
 export class UserService {
@@ -16,16 +17,19 @@ export class UserService {
   public async createUser(user: RegisterUserDto): Promise<void> {
     try {
       await this.db.user.create({
-        data: user,
+        data: {
+          ...user,
+          uid: nanoid(8),
+        },
       });
-    } catch (e) {
-      Logger.error(e);
+    } catch (error) {
+      Logger.error(error && error.message);
       throw new AppException();
     }
   }
 
-  public async getUserById(id: number): Promise<User> {
-    const user = this.db.user.findFirst({ where: { id } });
+  public async getUserById(uid: string): Promise<User> {
+    const user = this.db.user.findFirst({ where: { uid } });
     if (!user) {
       throw new NotFoundException('AuthUser with this id does not exist');
     }

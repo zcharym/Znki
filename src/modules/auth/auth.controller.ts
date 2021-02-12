@@ -41,7 +41,7 @@ export class AuthController {
   @ApiCreatedResponse({ type: LoginDto })
   public async login(@Body() body: LoginDto, @Res() res: Response) {
     const user = await this.userService.validateUser(body.email, body.pwd);
-    const cookie = this.authService.getCookieWithJwtToken(user.id);
+    const cookie = this.authService.getCookieWithJwtToken(user.uid);
     res.setHeader('Set-Cookie', cookie);
     res.send(UniRes.ok(user));
   }
