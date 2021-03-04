@@ -10,8 +10,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-
-import { CreateCardDto } from '../dto/create-card.dto';
 import { CardService } from '../service/card.service';
 import { JWTGuard } from '../../auth/jwt.guard';
 import { CreateCardAndNoteDto } from '../dto/create-card-and-note.dto';
@@ -44,7 +42,7 @@ export class CardController {
     )
     cardId: number,
   ) {
-    return this.cardService.getCardDetailById(cardId);
+    return this.cardService.getCardById(cardId);
   }
 
   // @Post()

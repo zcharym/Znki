@@ -3,7 +3,6 @@ import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -11,7 +10,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CardModule } from './modules/card/card.module';
 import { UserModule } from './modules/user/user.module';
 import { DbModule } from './shared/db/db.module';
-import { FileModule } from './file/file.module';
 
 const ENV = process.env.NODE_ENV;
 const configPath =
@@ -32,7 +30,6 @@ const configPath =
     CardModule,
     UserModule,
     AuthModule,
-    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

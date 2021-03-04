@@ -11,7 +11,15 @@ export class CardService {
    * add card and its note
    *
    */
-  async addCardAndNote(content: CreateCardAndNoteDto) {}
+  async addCardAndNote(item: CreateCardAndNoteDto) {
+    // TODO dto 和 prisma crud 完美结合
+    if (item.notes) {
+      await this.db.card.create({
+        data: item,
+      });
+    } else {
+    }
+  }
 
   async addCard(newCard: Prisma.CardCreateInput): Promise<number> {
     const card = await this.db.card.create({
@@ -26,15 +34,10 @@ export class CardService {
 
   async deleteCard(id: number) {}
 
-  async getCardDetailById(cardId: number) {
-    return this.db.card.delete({
-      where: {},
+  async getCardById(id: number) {
+    return this.db.card.findFirst({
+      where: { id },
+      include: { notes: true },
     });
-    // return this.noteRepo
-    //   .createQueryBuilder('note')
-    //   .select()
-    //   .leftJoinAndSelect(Card, 'card', 'card.id = note.cid')
-    //   .where('card.id = :cardId', { cardId })
-    //   .getMany();
   }
 }
