@@ -12,15 +12,16 @@ export class NoteService {
    * @param newNote
    */
   async createNote(newNote: CreateNoteDto): Promise<number> {
-    const card = await this.db.card.findFirst({
-      where: {
-        id: newNote.cid,
-      },
-    });
-    if (!card) {
-      throw new NotFoundException('card not found');
-    }
-    const note = await this.db.note.create({ data: newNote });
-    return note.id;
+    // TODO
+    // const card = await this.db.card.findFirst({
+    //   where: {
+    //     id: newNote.cardId,
+    //   },
+    // });
+    // if (!card) {
+    //   throw new NotFoundException('card not found');
+    // }
+    // const note = await this.db.note.create({ data: newNote });
+    return Promise.resolve(1);
   }
 }

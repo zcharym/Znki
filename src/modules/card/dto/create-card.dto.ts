@@ -5,12 +5,12 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 export class CreateCardDto implements Prisma.CardCreateInput {
   @ApiProperty({ type: Number, description: 'deck id' })
   @IsNumber()
-  did: number;
+  deckId: number;
 
   @ApiPropertyOptional({ type: Number, description: 'template id' })
   @IsNumber()
   @IsOptional()
-  tid?: number;
+  templateId?: number;
 
   @ApiProperty({ type: String, description: 'question of this card' })
   @IsString()

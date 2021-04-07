@@ -12,16 +12,14 @@ export class CreateNoteDto implements Omit<Prisma.NoteCreateInput, 'card'> {
   @ApiPropertyOptional({ type: Number, description: 'template id' })
   @IsNumber()
   @IsOptional()
-  tid?: number;
+  templateId?: number;
 
   @ApiProperty({ type: String, description: 'note content' })
   @IsString()
   @IsNotEmpty()
   content: string;
 
-  @ApiProperty({ type: Number, description: 'card id' })
-  @IsNumber()
-  cid: number;
+  // todo shortcut for creating a note.
 
   @ApiProperty({ enum: NoteTypeEnum, description: 'note type' })
   @IsEnum(NoteTypeEnum)

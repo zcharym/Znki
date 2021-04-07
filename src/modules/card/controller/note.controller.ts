@@ -13,6 +13,7 @@ export class NoteController {
 
   @Post()
   async addNote(@Body() body: CreateNoteDto) {
-    return this.noteService.createNote(body);
+    // return this.noteService.createNote(body);
+    return 'NOT IMPLEMENTED';
   }
 }

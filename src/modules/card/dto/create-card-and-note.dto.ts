@@ -15,12 +15,12 @@ export class CreateCardAndNoteDto
   implements Omit<Prisma.CardCreateInput, 'notes'> {
   @ApiProperty({ type: Number, description: 'deck id' })
   @IsNumber()
-  did: number;
+  deckId: number;
 
   @ApiPropertyOptional({ type: Number, description: 'card template id' })
   @IsNumber()
   @IsOptional()
-  tid?: number;
+  templateId?: number;
 
   @ApiProperty({ type: String, description: 'question of this card' })
   @IsString()
