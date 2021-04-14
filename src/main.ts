@@ -24,23 +24,6 @@ async function bootstrap() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
-  /**
-   * @TODO session endurance
-   * The default server-side session storage is purposely not designed for a production environment.
-   * It will leak memory under most conditions,
-   * does not scale past a single process,
-   * and is meant for debugging and developing.
-   * Read more in the official repository.
-   */
-  app.use(
-    session({
-      secret: SECRET_KEY,
-      store: new session.MemoryStore(),
-      cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 },
-      resave: false, // 强制保存session即使它并没有变化, don’t save session if unmodified
-      saveUninitialized: true, // 强制将未初始化的session存储
-    }),
-  );
 
   // swagger
   const options = new DocumentBuilder()
