@@ -8,7 +8,7 @@ import { AppException } from '../../shared/exceptions/app.exception';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { DbService } from 'src/shared/db/db.service';
 import { User } from '@prisma/client';
-import { nanoid } from 'nanoId';
+import { nanoid } from 'nanoid';
 
 @Injectable()
 export class UserService {
