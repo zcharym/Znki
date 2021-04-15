@@ -1,13 +1,22 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Prisma } from '@prisma/client';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
+import { CreateNoteDto } from './create-note.dto';
+import { Type } from 'class-transformer';
 
-export class CreateCardDto implements Prisma.CardCreateInput {
+export class CreateCardDto implements Omit<Prisma.CardCreateInput, 'notes'> {
   @ApiProperty({ type: Number, description: 'deck id' })
   @IsNumber()
   deckId: number;
 
-  @ApiPropertyOptional({ type: Number, description: 'template id' })
+  @ApiPropertyOptional({ type: Number, description: 'card template id' })
   @IsNumber()
   @IsOptional()
   templateId?: number;
@@ -16,4 +25,10 @@ export class CreateCardDto implements Prisma.CardCreateInput {
   @IsString()
   @IsNotEmpty()
   title: string;
+
+  @ApiProperty({ type: [CreateNoteDto], description: 'note list' })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateNoteDto)
+  notes?: CreateNoteDto[];
 }

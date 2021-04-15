@@ -12,7 +12,7 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CardService } from '../service/card.service';
 import { JWTGuard } from '../../auth/jwt.guard';
-import { CreateCardAndNoteDto } from '../dto/create-card-and-note.dto';
+import { CreateCardDto } from '../dto/create-card.dto';
 
 /**
  * TODO use guard to specific module
@@ -45,14 +45,9 @@ export class CardController {
     return this.cardService.getCardById(cardId);
   }
 
-  // @Post()
-  // async addCard(@Body() body: CreateCardDto) {
-  //   return this.cardService.addCard(body);
-  // }
-
-  @Post('/add')
-  async addCardAndNote(@Body() body: CreateCardAndNoteDto) {
-    return this.cardService.addCardAndNote(body);
+  @Post()
+  async addCard(@Body() body: CreateCardDto) {
+    return this.cardService.addCard(body);
   }
 
   @Put()

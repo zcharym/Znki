@@ -8,7 +8,7 @@ import {
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { NoteTypeEnum, Prisma } from '@prisma/client';
 
-export class CreateNoteDto implements Omit<Prisma.NoteCreateInput, 'card'> {
+export class CreateNoteDto implements Prisma.NoteCreateWithoutCardInput {
   @ApiPropertyOptional({ type: Number, description: 'template id' })
   @IsNumber()
   @IsOptional()
