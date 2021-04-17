@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as deckConfig from '../../../config/deck.conf.json';
 import { CreateDeckDto } from '../dto/create-deck.dto';
 import { DbService } from 'src/shared/db/db.service';
+import { DeckListDto } from '../dto/deck-list.dto';
 
 @Injectable()
 export class DeckService {
@@ -21,7 +22,16 @@ export class DeckService {
     return deck.id;
   }
 
-  async list() {
-    return this.db.deck.findMany();
+  async list(deck: DeckListDto, userId: number) {
+    return this.db.deck.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        name: 'desc',
+      },
+      take: deck.take || 5,
+      skip: deck.skip || 0,
+    });
   }
 }

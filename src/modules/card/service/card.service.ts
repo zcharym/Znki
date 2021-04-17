@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Card, Prisma } from '@prisma/client';
 import { DbService } from 'src/shared/db/db.service';
+import { CardListDto } from '../dto/card-list.dto';
 import { CreateCardDto } from '../dto/create-card.dto';
 
 @Injectable()
@@ -26,11 +27,22 @@ export class CardService {
     return result.id;
   }
 
-  async list() {
-    return this.db.card.findMany();
+  /**
+   * get cards by deckId
+   * @returns
+   * @version 0.1
+   */
+  async list(cardList: CardListDto): Promise<Array<any>> {
+    return this.db.card.findMany(cardList);
   }
 
-  async deleteCard(id: number) {}
+  async deleteCard(id: number) {
+    return this.db.card.delete({
+      where: {
+        id,
+      },
+    });
+  }
 
   async getCardById(id: number) {
     return this.db.card.findFirst({

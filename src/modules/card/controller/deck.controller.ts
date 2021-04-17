@@ -5,6 +5,7 @@ import { DeckService } from '../service/deck.service';
 import { JWTGuard } from '../../auth/jwt.guard';
 import { AuthUser } from '../../../shared/decorators/auth-user.decorator';
 import { User } from '@prisma/client';
+import { DeckListDto } from '../dto/deck-list.dto';
 
 @ApiTags('Deck')
 @Controller('deck')
@@ -18,7 +19,7 @@ export class DeckController {
   }
 
   @Get()
-  async getDecks() {
-    return this.deckService.list();
+  async getDecks(@Body() body: DeckListDto, @AuthUser() user: User) {
+    return this.deckService.list(body, user.id);
   }
 }
