@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { CreateDeckDto } from '../dto/create-deck.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { DeckService } from '../service/deck.service';
@@ -19,7 +19,7 @@ export class DeckController {
   }
 
   @Get()
-  async getDecks(@Body() body: DeckListDto, @AuthUser() user: User) {
-    return this.deckService.list(body, user.id);
+  async getDecks(@Query() query: DeckListDto, @AuthUser() user: User) {
+    return this.deckService.list(query, user.id);
   }
 }

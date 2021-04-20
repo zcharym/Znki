@@ -1,7 +1,5 @@
 import cookieParser from 'cookie-parser';
 import * as express from 'express';
-import session from 'express-session';
-import { SECRET_KEY } from 'src/config/config.json';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
