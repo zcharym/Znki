@@ -15,6 +15,7 @@ import { JWTGuard } from '../../auth/jwt.guard';
 import { CreateCardDto } from '../dto/create-card.dto';
 import { AuthUser } from 'src/shared/decorators';
 import { CardListDto } from '../dto/card-list.dto';
+import { Query } from '@nestjs/common';
 
 /**
  * TODO use guard to specific module
@@ -28,7 +29,7 @@ export class CardController {
 
   @Get()
   @ApiOperation({ summary: 'get all cards' })
-  async getCards(@Body() cardList: CardListDto) {
+  async getCards(@Query() cardList: CardListDto) {
     return this.cardService.list(cardList);
   }
 
