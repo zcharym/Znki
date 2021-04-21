@@ -1,10 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
-import {
-  CommonListDto,
-  CommonResponseDto,
-} from '../../../shared/interfaces/common-response.dto';
+import { CommonResponseDto } from '../../../shared/interfaces/common-response.dto';
+
+// TODO remove TagListDto
+export class TagListDto<T> {
+  @ApiProperty()
+  data: T;
+  @ApiProperty({ type: Number })
+  count: number;
+  @ApiProperty({ type: Number })
+  total: number;
+  @ApiProperty({ type: Number })
+  page: number;
+  @ApiProperty({ type: Number })
+  pageCount: number;
+}
 
 export class TagDto {
   @ApiProperty({ type: String, description: 'tag name' })
@@ -16,8 +27,8 @@ export class TagDto {
   type: number;
 }
 
-export class TagResDto extends CommonResponseDto<CommonListDto<TagDto[]>> {
-  @ApiProperty({ type: CommonListDto })
-  @Type(() => CommonListDto)
-  data: CommonListDto<TagDto[]>;
+export class TagResDto extends CommonResponseDto<TagListDto<TagDto[]>> {
+  @ApiProperty({ type: TagListDto })
+  @Type(() => TagListDto)
+  data: TagListDto<TagDto[]>;
 }

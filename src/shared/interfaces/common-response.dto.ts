@@ -13,20 +13,3 @@ export class CommonResponseDto<T> {
   @Expose()
   data: T;
 }
-
-// TODO: add detailed response in swagger api.
-
-export class CommonListDto<T> {
-  @ApiProperty()
-  data: T;
-  @ApiProperty({ type: Number })
-  count: number;
-  @ApiProperty({ type: Number })
-  total: number;
-  @ApiProperty({ type: Number })
-  page: number;
-  @ApiProperty({ type: Number })
-  pageCount: number;
-}
-
-

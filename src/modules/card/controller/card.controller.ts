@@ -27,9 +27,9 @@ import { Query } from '@nestjs/common';
 export class CardController {
   constructor(private cardService: CardService) {}
 
-  @Get()
+  @Post()
   @ApiOperation({ summary: 'get all cards' })
-  async getCards(@Query() cardList: CardListDto) {
+  async getCards(@Body() cardList: CardListDto) {
     return this.cardService.list(cardList);
   }
 
@@ -48,7 +48,7 @@ export class CardController {
     return this.cardService.getCardById(cardId);
   }
 
-  @Post()
+  @Post('/add')
   async addCard(@Body() body: CreateCardDto) {
     return this.cardService.addCard(body);
   }
