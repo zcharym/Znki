@@ -33,7 +33,10 @@ export class CardService {
    * @version 0.1
    */
   async list(cardList: CardListDto): Promise<Array<any>> {
-    return this.db.card.findMany(cardList);
+    return this.db.card.findMany({
+      ...cardList,
+      include: { notes: true },
+    });
   }
 
   async deleteCard(id: number) {
