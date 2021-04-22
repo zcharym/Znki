@@ -28,7 +28,7 @@ export class DeckService {
         userId,
       },
       orderBy: {
-        name: 'desc',
+        createAt: 'asc',
       },
       take: deck.take || 5,
       skip: deck.skip || 0,

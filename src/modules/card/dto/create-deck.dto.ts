@@ -23,6 +23,7 @@ export class CreateDeckDto {
 
   @ApiPropertyOptional({ type: DeckConfDto })
   @Type(() => DeckConfDto)
+  @IsOptional()
   @IsInstance(DeckConfDto)
   conf: DeckConfDto;
 
