@@ -10,6 +10,7 @@ export class RegisterUserDto {
   readonly username: string;
   @ApiProperty()
   @IsEmail({}, { message: 'email is not correct' })
+  @Transform((val: string) => val.toLowerCase())
   readonly email: string;
   @ApiProperty()
   @IsNotEmpty({ message: 'pwd cant be empty' })

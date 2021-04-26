@@ -36,11 +36,23 @@ export class UserService {
     return user;
   }
 
-  public async validateUser(email: string, pwd: string): Promise<User> {
+  public async validateUser(
+    email: string,
+    pwd: string,
+  ): Promise<
+    Pick<User, 'uid' | 'username' | 'avatar' | 'createAt' | 'updateAt'>
+  > {
     const user = await this.db.user.findFirst({
       where: {
         email,
         pwd,
+      },
+      select: {
+        username: true,
+        uid: true,
+        avatar: true,
+        createAt: true,
+        updateAt: true,
       },
     });
     if (!user) {
@@ -54,6 +66,7 @@ export class UserService {
       where: {
         email: {
           contains: email,
+          mode: 'insensitive',
         },
       },
     });

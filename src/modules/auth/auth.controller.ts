@@ -33,14 +33,16 @@ export class AuthController {
   @Get('/token')
   @UseGuards(JWTGuard)
   public async verifyToken(@Req() req: any) {
+    // TODO
     return req.user;
   }
 
   @Post('/login')
   @ApiOperation({ description: 'user login' })
-  @ApiCreatedResponse({ type: LoginDto })
+  // @ApiCreatedResponse({ type:  })
   public async login(@Body() body: LoginDto, @Res() res: Response) {
     const user = await this.userService.validateUser(body.email, body.pwd);
+    console.dir(user);
     const cookie = this.authService.getCookieWithJwtToken(user.uid);
     res.setHeader('Set-Cookie', cookie);
     res.send(UniRes.ok(user));

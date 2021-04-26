@@ -13,5 +13,6 @@ export class LoginDto {
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty({ type: String, description: 'email' })
+  @Transform((val: string) => val.toLowerCase())
   email: string;
 }
