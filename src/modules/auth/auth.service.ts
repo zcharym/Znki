@@ -35,6 +35,6 @@ export class AuthService {
   }
 
   public getCookieForLogOut(): string {
-    return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
+    return `Authentication=; Path=/; Max-Age=0`;
   }
 }
