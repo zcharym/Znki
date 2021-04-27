@@ -25,9 +25,13 @@ export class AuthService {
 
   // async logout(user: any) {}
 
-  public getCookieWithJwtToken(userId: string): string {
+  public getTokenWithPayload(userId: string): string {
     const payload: ITokenPayload = { userId };
-    const token = this.jwtService.sign(payload);
+    return this.jwtService.sign(payload);
+  }
+
+  public getCookieWithJwtToken(userId: string): string {
+    const token = this.getTokenWithPayload(userId);
     // NOTE remove HttpOnly for client convenience
     return `Authentication=${token}; Path=/; Max-Age=${this.configService.get(
       'JWT_EXPIRATION_TIME',

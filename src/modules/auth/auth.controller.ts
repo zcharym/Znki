@@ -42,10 +42,14 @@ export class AuthController {
   // @ApiCreatedResponse({ type:  })
   public async login(@Body() body: LoginDto, @Res() res: Response) {
     const user = await this.userService.validateUser(body.email, body.pwd);
-    console.dir(user);
     const cookie = this.authService.getCookieWithJwtToken(user.uid);
     res.setHeader('Set-Cookie', cookie);
-    res.send(UniRes.ok(user));
+    res.send(
+      UniRes.ok({
+        user,
+        token: this.authService.getTokenWithPayload(user.uid),
+      }),
+    );
   }
 
   @Post('/register')
