@@ -6,6 +6,8 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import ObsClient = require('esdk-obs-nodejs');
+import { createReadStream } from 'fs';
+import { IObsMessage } from './obs.interface';
 
 /**
  *
@@ -60,25 +62,28 @@ export class ObsService implements OnModuleInit, OnModuleDestroy {
     this.obsClient.onClose();
   }
 
-  // 上传对象
-  public async uploadFile(o: { fileType: 'text' | 'stream' }) {}
-
-  private async uploadText() {
-    await this.obsClient.putObject(
-      // SourceFile : 'localfile' // localfile为待上传的本地文件路径，需要指定到具体的文件名
-      // body: fs.createReadStream('localfile')
-      // { Bucket: 'bucketname', Key: 'objectname', Body: 'Hello OBS' },
-      (err, result) => {
-        if (err) {
-          console.error('Error-->' + err);
-        } else {
-          console.log('Status-->' + result.CommonMsg.Status);
-        }
-      },
-    );
+  /**
+   * upload stream with tmp file
+   * @param file MulterFile
+   * @returns file url
+   * @version 0.1
+   */
+  public async uploadFile(file: Express.Multer.File): Promise<string> {
+    try {
+      const result: IObsMessage = await this.obsClient.putObject({
+        Bucket: 'znki',
+        Key: file.originalname,
+        Body: createReadStream(file.path),
+      });
+      // TODO return file url or joint them
+      return 'file url';
+    } catch (error) {
+      console.error('Error-->' + error);
+    }
   }
 
   private async createDirectory() {}
+
   // 下载对象
   public async downloadFile() {
     // this.obsClient.getObject(

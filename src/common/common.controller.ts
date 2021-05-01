@@ -11,11 +11,15 @@ import { ApiFile } from 'src/shared/decorators/swagger-api-file.decorator';
 import { CommonService } from './common.service';
 import { diskStorage } from 'multer';
 import { nanoid } from 'nanoid';
+import { UploadService } from './upload/upload.service';
 
 @ApiTags('common')
 @Controller('common')
 export class CommonController {
-  constructor(private readonly commonService: CommonService) {}
+  constructor(
+    private readonly commonService: CommonService,
+    private readonly uploadService: UploadService,
+  ) {}
   @Post('upload')
   @ApiConsumes('multipart/form-data')
   @ApiOperation({
@@ -37,7 +41,8 @@ export class CommonController {
     }),
   )
   public async upload(@UploadedFile() file: Express.Multer.File): Promise<any> {
-    return file.filename;
+    const url = await this.uploadService.upload(file);
+    return url;
   }
 
   // @Get('download')
