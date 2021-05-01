@@ -11,7 +11,7 @@ import { CardModule } from './modules/card/card.module';
 import { UserModule } from './modules/user/user.module';
 import { DbModule } from './shared/db/db.module';
 import { CommonModule } from './common/common.module';
-import { ObsModule } from './obs/obs.module';
+import { ObsModule } from './modules/obs/obs.module';
 
 const ENV = process.env.NODE_ENV;
 const configPath = ENV === 'production' ? '.env.prod' : '.env';
