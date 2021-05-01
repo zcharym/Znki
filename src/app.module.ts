@@ -11,12 +11,10 @@ import { CardModule } from './modules/card/card.module';
 import { UserModule } from './modules/user/user.module';
 import { DbModule } from './shared/db/db.module';
 import { CommonModule } from './common/common.module';
+import { ObsModule } from './obs/obs.module';
 
 const ENV = process.env.NODE_ENV;
-const configPath =
-  ENV === 'production'
-    ? 'src/config/config.prod.env'
-    : 'src/config/config.dev.env';
+const configPath = ENV === 'production' ? '.env.prod' : '.env';
 
 @Module({
   imports: [
@@ -32,6 +30,7 @@ const configPath =
     UserModule,
     AuthModule,
     CommonModule,
+    ObsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
