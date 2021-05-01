@@ -1,3 +1,7 @@
+export const DIR = {
+  FILE: './upload',
+};
+
 export enum ROLE {
   COMMON = 'common',
   ADMIN = 'admin',
