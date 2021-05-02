@@ -1,5 +1,6 @@
 import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { existsSync, unlink } from 'fs';
+import { nanoid } from 'nanoid';
 import { ObsService } from 'src/modules/obs/obs.service';
 import { DbService } from 'src/shared/db/db.service';
 
@@ -19,14 +20,18 @@ export class UploadService {
   ): Promise<string> {
     try {
       if (existsSync(file.path)) {
-        const result = this.obsService.uploadFile(file);
-        const callbackUrl = `${this.obsService.BucketUrl}/${file.originalname}`;
+        // obs specific key uuid(8)_filename.ext
+        const key = `${nanoid(8)}_${file.originalname}`;
+        const callbackUrl = `${this.obsService.BucketUrl}/${key}`;
+
+        const result = this.obsService.uploadFile({ key, ...file });
         if (result) {
           await this.db.storage.create({
             data: {
               userId,
               url: callbackUrl,
-              key: file.originalname,
+              key,
+              mimeType: file.mimetype,
             },
           });
         }

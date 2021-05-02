@@ -72,11 +72,13 @@ export class ObsService implements OnModuleInit, OnModuleDestroy {
    * @returns file url
    * @version 0.1
    */
-  public async uploadFile(file: Express.Multer.File): Promise<IObsMessage> {
+  public async uploadFile(
+    file: Express.Multer.File & { key: string },
+  ): Promise<IObsMessage> {
     try {
       return this.obsClient.putObject({
         Bucket: 'znki',
-        Key: file.originalname,
+        Key: file.key,
         Body: createReadStream(file.path),
       });
     } catch (error) {
