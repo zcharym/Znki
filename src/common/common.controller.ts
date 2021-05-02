@@ -2,6 +2,7 @@ import {
   Controller,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -12,9 +13,13 @@ import { CommonService } from './common.service';
 import { diskStorage } from 'multer';
 import { nanoid } from 'nanoid';
 import { UploadService } from './upload/upload.service';
+import { User } from '@prisma/client';
+import { AuthUser } from 'src/shared/decorators';
+import { JWTGuard } from 'src/modules/auth/jwt.guard';
 
 @ApiTags('common')
 @Controller('common')
+@UseGuards(JWTGuard)
 export class CommonController {
   constructor(
     private readonly commonService: CommonService,
@@ -40,8 +45,11 @@ export class CommonController {
       }),
     }),
   )
-  public async upload(@UploadedFile() file: Express.Multer.File): Promise<any> {
-    const url = await this.uploadService.upload(file);
+  public async upload(
+    @UploadedFile() file: Express.Multer.File,
+    @AuthUser() user: User,
+  ): Promise<any> {
+    const url = await this.uploadService.upload(file, user.id);
     return url;
   }
 

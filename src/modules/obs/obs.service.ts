@@ -26,6 +26,10 @@ export class ObsService implements OnModuleInit, OnModuleDestroy {
     this.initClient();
   }
 
+  get BucketUrl(): string {
+    return this.configService.get<string>('BUCKET_URL');
+  }
+
   public initClient() {
     const clientInfo = {
       access_key_id: this.configService.get<string>('ACCESS_KEY_ID'),
@@ -68,15 +72,13 @@ export class ObsService implements OnModuleInit, OnModuleDestroy {
    * @returns file url
    * @version 0.1
    */
-  public async uploadFile(file: Express.Multer.File): Promise<string> {
+  public async uploadFile(file: Express.Multer.File): Promise<IObsMessage> {
     try {
-      const result: IObsMessage = await this.obsClient.putObject({
+      return this.obsClient.putObject({
         Bucket: 'znki',
         Key: file.originalname,
         Body: createReadStream(file.path),
       });
-      // TODO return file url or joint them
-      return 'file url';
     } catch (error) {
       console.error('Error-->' + error);
     }
