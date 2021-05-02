@@ -85,8 +85,9 @@ model User {
 }
 
 model Storage {
-  id  String @id @default(uuid())
+  id  Int @id @default(autoincrement())
   url String 
+  key String  @default("")  /// key to specifiy object
   mimeType String @default("") @map(name:"mime_type")
   userId Int @map(name:"user_id")
   user User @relation(fields: [userId],references:[id])
