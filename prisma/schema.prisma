@@ -79,8 +79,21 @@ model User {
   avatar    String?
   email     String   @unique
   phone     String?
+  storage   Storage[]
 
   @@map(name:"users")
+}
+
+model Storage {
+  id  String @id @default(uuid())
+  url String 
+  mimeType String @default("") @map(name:"mime_type")
+  userId Int @map(name:"user_id")
+  user User @relation(fields: [userId],references:[id])
+  createAt  DateTime @default(now()) @map(name:"create_at")
+  updateAt  DateTime @default(now()) @map(name:"update_at")
+
+  @@map(name:"storages")
 }
 
 enum NoteTypeEnum {
