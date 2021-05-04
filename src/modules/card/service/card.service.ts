@@ -28,15 +28,19 @@ export class CardService {
   }
 
   /**
-   * get cards by deckId
+   * get cards by deckId with count
    * @returns
-   * @version 0.1
+   * @version 0.2
    */
-  async list(cardList: CardListDto): Promise<Array<any>> {
-    return this.db.card.findMany({
-      ...cardList,
-      include: { notes: true },
-    });
+  async list(cardList: CardListDto): Promise<{ data: any[]; total: number }> {
+    const [data, total] = await Promise.all([
+      this.db.card.findMany({
+        ...cardList,
+        include: { notes: true },
+      }),
+      this.db.card.count(),
+    ]);
+    return { data, total };
   }
 
   async deleteCard(id: number) {
