@@ -12,3 +12,13 @@ export class CommonListDto {
   @ToInt()
   skip: number;
 }
+
+export class CommonResListDto<T> {
+  @ApiProperty({ type: Object, isArray: true })
+  data: T[];
+  @ApiProperty({ type: Number })
+  total: number;
+}
+export class CommonResDto<T> {
+  [key: string]: any;
+}
