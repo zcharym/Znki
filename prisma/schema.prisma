@@ -71,7 +71,7 @@ model Tag {
 
 model User {
   id        Int      @id @default(autoincrement())
-  uid       String   /// uuid for user
+  uid       String   @unique/// uuid for user
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")
   username  String

@@ -9,6 +9,7 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { DbService } from 'src/shared/db/db.service';
 import { User } from '@prisma/client';
 import { nanoid } from 'nanoid';
+import { omit } from 'lodash';
 
 @Injectable()
 export class UserService {
@@ -69,6 +70,15 @@ export class UserService {
           mode: 'insensitive',
         },
       },
+    });
+  }
+
+  public async updateUserInfo(userInfo: Partial<User>): Promise<User> {
+    return this.db.user.update({
+      where: {
+        uid: userInfo.uid,
+      },
+      data: omit(userInfo, 'uid'),
     });
   }
 }
