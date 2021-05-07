@@ -28,7 +28,7 @@ export class CommonController {
   @Post('upload')
   @ApiConsumes('multipart/form-data')
   @ApiOperation({
-    summary: 'dts file upload',
+    summary: 'upload file | returning obs url',
     description: 'file upload. Max size is 100MB.',
   })
   @ApiFile()
