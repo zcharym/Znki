@@ -21,7 +21,7 @@ model Card {
   createAt  DateTime   @default(now()) @map(name:"create_at")
   updateAt  DateTime   @default(now()) @map(name:"update_at")
   notes     Note[]
-
+  tags      Tag[]
   @@map(name:"cards")
 }
 
@@ -53,18 +53,12 @@ model Note {
   @@map(name:"notes")
 }
 
-// model tag_card {
-//   id        Int      @id @default(autoincrement())
-//   tid       Int
-//   cid       Int
-//   createAt DateTime @default(now())
-//   updateAt DateTime @default(now())
-// }
 
 model Tag {
   id        Int      @id @default(autoincrement())
   name      String
-  type      Int      @default(0)
+  pid       Int
+  cards     Card[]
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")
 
