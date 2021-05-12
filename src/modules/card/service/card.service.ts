@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Card } from '@prisma/client';
 import { ReviewStatusEnum } from 'src/shared/consts/common.const';
 import { DbService } from 'src/shared/db/db.service';
@@ -8,6 +8,8 @@ import { CoreService } from './core/core.service';
 
 @Injectable()
 export class CardService {
+  private readonly logger = new Logger(CardService.name);
+
   constructor(private db: DbService, private coreService: CoreService) {}
 
   /**
@@ -60,12 +62,26 @@ export class CardService {
     return { data, total };
   }
 
-  async deleteCard(id: number) {
-    return this.db.card.delete({
-      where: {
-        id,
-      },
-    });
+  async deleteCard(ids: number[]): Promise<void> {
+    try {
+      // AMEND performance improvement
+      for await (const id of ids) {
+        const deleteNotes = this.db.note.deleteMany({
+          where: {
+            cardId: id,
+          },
+        });
+        const deletedCard = this.db.card.delete({
+          where: {
+            id,
+          },
+        });
+
+        await this.db.$transaction([deleteNotes, deletedCard]);
+      }
+    } catch (error) {
+      this.logger.error(error.toString());
+    }
   }
 
   async getCardById(id: number) {

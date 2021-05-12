@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   Param,
@@ -16,6 +17,7 @@ import { CreateCardDto } from '../dto/create-card.dto';
 import { CardListDto } from '../dto/card-list.dto';
 import { CardResListDto } from '../dto/card-res.dto';
 import { ReviewCardDto } from '../dto/review-card.dto';
+import { CommonIdSetDto } from 'src/shared/dto/common.dto';
 
 /**
  * TODO use guard to specific module
@@ -62,5 +64,10 @@ export class CardController {
   @Put()
   async updateCard() {
     return;
+  }
+
+  @Delete()
+  async deleteCards(@Body() body: CommonIdSetDto) {
+    return this.cardService.deleteCard(body.ids);
   }
 }
