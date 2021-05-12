@@ -4,6 +4,7 @@ import { ReviewStatusEnum } from 'src/shared/consts/common.const';
 import { DbService } from 'src/shared/db/db.service';
 import { CardListDto } from '../dto/card-list.dto';
 import { CreateCardDto } from '../dto/create-card.dto';
+import { UpdateCardDto } from '../dto/update-card.dto';
 import { CoreService } from './core/core.service';
 
 @Injectable()
@@ -88,6 +89,15 @@ export class CardService {
     return this.db.card.findFirst({
       where: { id },
       include: { notes: true },
+    });
+  }
+
+  async updateCard(card: UpdateCardDto) {
+    return this.db.card.update({
+      where: {
+        id: card.id,
+      },
+      data: card,
     });
   }
 }

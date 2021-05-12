@@ -18,6 +18,7 @@ import { CardListDto } from '../dto/card-list.dto';
 import { CardResListDto } from '../dto/card-res.dto';
 import { ReviewCardDto } from '../dto/review-card.dto';
 import { CommonIdSetDto } from 'src/shared/dto/common.dto';
+import { UpdateCardDto } from '../dto/update-card.dto';
 
 /**
  * TODO use guard to specific module
@@ -28,6 +29,15 @@ import { CommonIdSetDto } from 'src/shared/dto/common.dto';
 @Controller('card')
 export class CardController {
   constructor(private cardService: CardService) {}
+
+  @Put()
+  @ApiOperation({
+    summary: 'to update card info',
+    description: 'version 0.1',
+  })
+  async updateCard(@Body() body: UpdateCardDto) {
+    return this.cardService.updateCard(body);
+  }
 
   @Post()
   @ApiOperation({ summary: 'get all cards' })
@@ -52,21 +62,28 @@ export class CardController {
   }
 
   @Post('/add')
+  @ApiOperation({
+    summary: 'to add card',
+    description: 'version 0.1',
+  })
   async addCard(@Body() body: CreateCardDto) {
     return this.cardService.addCard(body);
   }
 
   @Post('/review')
+  @ApiOperation({
+    summary: 'to review card',
+    description: 'version 0.1',
+  })
   async reviewCard(@Body() body: ReviewCardDto) {
     return this.cardService.reviewCard(body.cardId, body.status);
   }
 
-  @Put()
-  async updateCard() {
-    return;
-  }
-
   @Delete()
+  @ApiOperation({
+    summary: 'delete cards',
+    description: 'version 0.1',
+  })
   async deleteCards(@Body() body: CommonIdSetDto) {
     return this.cardService.deleteCard(body.ids);
   }
