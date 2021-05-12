@@ -57,7 +57,7 @@ model Note {
 model Tag {
   id        Int      @id @default(autoincrement())
   name      String
-  pid       Int
+  pid       Int      @default(0)
   cards     Card[]
   createAt  DateTime @default(now()) @map(name:"create_at")
   updateAt  DateTime @default(now()) @map(name:"update_at")

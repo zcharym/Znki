@@ -1,7 +1,6 @@
 import { ApiTags } from '@nestjs/swagger';
-import { Body, Controller, Delete, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Post, UseGuards, Get } from '@nestjs/common';
 import { TagService } from '../service/tag.service';
-import { TagResDto } from '../dto/tag-res.dto';
 import { CreateTagDto } from '../dto/create-tag.dto';
 import { JWTGuard } from '../../auth/jwt.guard';
 
@@ -10,6 +9,11 @@ import { JWTGuard } from '../../auth/jwt.guard';
 @UseGuards(JWTGuard)
 export class TagController {
   constructor(private tagService: TagService) {}
+
+  @Get()
+  async getTags() {
+    return this.tagService.list();
+  }
 
   @Post()
   async addTag(@Body() body: CreateTagDto) {
