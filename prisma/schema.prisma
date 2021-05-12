@@ -14,6 +14,8 @@ model Card {
   templateId       Int        @default(-1) @map("tid")
   title     String
   status    CardStatusEnum @default(NEW)
+  interval  Int  @default(0)///interval day for review
+  efactor   Float @default(2.2)/// efactor for algorithm
   due       DateTime?
   reviews   Int        @default(0)
   createAt  DateTime   @default(now()) @map(name:"create_at")
@@ -105,6 +107,5 @@ enum NoteTypeEnum {
 enum CardStatusEnum {
   NEW
   LEARNING
-  REVIEW
-  RELEARNING
+  ARCHIVED
 }

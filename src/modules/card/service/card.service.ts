@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Card, Prisma } from '@prisma/client';
+import { Card } from '@prisma/client';
+import { ReviewStatusEnum } from 'src/shared/consts/common.const';
 import { DbService } from 'src/shared/db/db.service';
 import { CardListDto } from '../dto/card-list.dto';
 import { CreateCardDto } from '../dto/create-card.dto';
+import { CoreService } from './core/core.service';
 
 @Injectable()
 export class CardService {
-  constructor(private db: DbService) {}
+  constructor(private db: DbService, private coreService: CoreService) {}
 
   /**
    * create card with at least one note
@@ -25,6 +27,21 @@ export class CardService {
       },
     });
     return result.id;
+  }
+
+  /**
+   * review  card
+   * @param card
+   * @returns card
+   */
+  async reviewCard(cardId: number, status: ReviewStatusEnum): Promise<Card> {
+    const card = await this.db.card.findUnique({ where: { id: cardId } });
+    const updated = this.coreService.review(card, status);
+    const result = await this.db.card.update({
+      where: { id: card.id },
+      data: updated,
+    });
+    return result;
   }
 
   /**

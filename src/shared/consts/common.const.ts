@@ -24,3 +24,9 @@ export enum ResultMessageEnum {
   SUCCESS = 'success',
   FAIL = 'fail',
 }
+
+export enum ReviewStatusEnum {
+  UNKNOWN = 'UNKNOWN',
+  GOOD = 'GOOD',
+  CLEAR = 'CLEAR',
+}

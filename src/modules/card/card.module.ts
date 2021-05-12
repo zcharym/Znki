@@ -8,10 +8,11 @@ import { CardService } from './service/card.service';
 import { DeckService } from './service/deck.service';
 import { NoteService } from './service/note.service';
 import { TagService } from './service/tag.service';
+import { CoreService } from './service/core/core.service';
 
 @Module({
   imports: [DbModule],
-  providers: [TagService, CardService, DeckService, NoteService],
+  providers: [TagService, CardService, DeckService, NoteService, CoreService],
   controllers: [TagController, CardController, DeckController, NoteController],
 })
 export class CardModule {}
