@@ -10,14 +10,9 @@ export class TagService {
 
   async addTag(item: CreateTagDto) {
     await this.db.tag.create({
-      // data: { ...tag, cards: { connect: { id: 2 } } },
       data: {
         ...item.tag,
         cards: {
-          // create: {
-          //   title: 'x',
-          //   deckId: 2,
-          // },
           connect: {
             id: item.cardId,
           },
