@@ -30,3 +30,9 @@ export enum ReviewStatusEnum {
   GOOD = 'GOOD',
   CLEAR = 'CLEAR',
 }
+
+export enum UploadTypeENum {
+  USER_CONTENT = 'USER_CONTENT',
+  FORMATTED_CARD = 'FORMATTED_CARD',
+  TEMP = 'TEMP',
+}

@@ -36,7 +36,13 @@ const configPath = ENV === 'production' ? '.env.prod' : '.env';
         limit: config.get<number>('THROTTLE_LIMIT'),
       }),
     }),
-    LoggerModule.forRoot(),
+    LoggerModule.forRoot({
+      // TODO format this
+      pinoHttp: {
+        level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+        prettyPrint: true,
+      },
+    }),
     CardModule,
     UserModule,
     AuthModule,

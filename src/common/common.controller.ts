@@ -1,6 +1,8 @@
 import {
+  Body,
   Controller,
   Post,
+  Query,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -16,6 +18,7 @@ import { UploadService } from './upload/upload.service';
 import { User } from '@prisma/client';
 import { AuthUser } from 'src/shared/decorators';
 import { JWTGuard } from 'src/modules/auth/jwt.guard';
+import { UploadDto } from './upload/upload.dto';
 
 @ApiTags('common')
 @Controller('common')
@@ -46,11 +49,12 @@ export class CommonController {
     }),
   )
   public async upload(
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile('file') file: Express.Multer.File,
+    @Query() query: UploadDto,
     @AuthUser() user: User,
   ): Promise<any> {
-    const url = await this.uploadService.upload(file, user.id);
-    return url;
+    const result = await this.uploadService.upload(file, user.id, query.action);
+    return result;
   }
 
   // @Get('download')

@@ -52,7 +52,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "supermemo": "^2.0.17",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.4",
@@ -76,6 +77,7 @@
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "26.4.2",
+    "pino-pretty": "^4.8.0",
     "prettier": "^1.19.1",
     "prisma": "^2.21.0",
     "supertest": "^4.0.2",
