@@ -1,7 +1,6 @@
 import {
   ForbiddenException,
   Injectable,
-  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { AppException } from '../../shared/exceptions/app.exception';
@@ -24,8 +23,7 @@ export class UserService {
         },
       });
     } catch (error) {
-      Logger.error(error && error.message);
-      throw new AppException();
+      throw new AppException(error.toString());
     }
   }
 

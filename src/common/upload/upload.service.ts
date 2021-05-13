@@ -1,17 +1,17 @@
-import { HttpService, Injectable, Logger } from '@nestjs/common';
+import { HttpService, Injectable } from '@nestjs/common';
 import { existsSync, unlink } from 'fs';
 import { nanoid } from 'nanoid';
+import { Logger } from 'nestjs-pino';
 import { ObsService } from 'src/modules/obs/obs.service';
 import { DbService } from 'src/shared/db/db.service';
 
 @Injectable()
 export class UploadService {
-  private readonly logger = new Logger(UploadService.name);
-
   constructor(
     private http: HttpService,
     private obsService: ObsService,
     private db: DbService,
+    private logger: Logger,
   ) {}
 
   public async upload(

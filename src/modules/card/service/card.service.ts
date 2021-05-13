@@ -1,5 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Card } from '@prisma/client';
+import { Logger } from 'nestjs-pino';
 import { ReviewStatusEnum } from 'src/shared/consts/common.const';
 import { DbService } from 'src/shared/db/db.service';
 import { CardListDto } from '../dto/card-list.dto';
@@ -9,9 +10,11 @@ import { CoreService } from './core/core.service';
 
 @Injectable()
 export class CardService {
-  private readonly logger = new Logger(CardService.name);
-
-  constructor(private db: DbService, private coreService: CoreService) {}
+  constructor(
+    private db: DbService,
+    private coreService: CoreService,
+    private logger: Logger,
+  ) {}
 
   /**
    * create card with at least one note
