@@ -41,7 +41,6 @@ export class CardController {
 
   @Post()
   @ApiOperation({ summary: 'get all cards' })
-  @ApiOkResponse({ type: CardResListDto })
   async getCards(@Body() cardList: CardListDto) {
     return this.cardService.list(cardList);
   }
