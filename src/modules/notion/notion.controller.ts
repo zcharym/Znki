@@ -32,6 +32,7 @@ export class NotionController {
   @Get('database')
   @ApiOperation({ description: '[notion] get database info by uuid' })
   getDatabaseInfo() {
+    this.customService.syncDatabaseInfo();
     return this.notionService.queryDb();
   }
 }

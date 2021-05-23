@@ -36,6 +36,29 @@ export class CardService {
   }
 
   /**
+   * bulk add cards
+   * @param cards
+   * @tutorial https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
+   */
+  async bulkAdd(cards: CreateCardDto[]) {
+    // TODO
+    // const notes = card.notes;
+    // await this.db.card.createMany({
+    //   data:cards.map(item => ())
+    // })
+    // const result = await this.db.card.create({
+    //   data: {
+    //     deckId: card.deckId,
+    //     title: card.title,
+    //     notes: {
+    //       create: notes,
+    //     },
+    //   },
+    // });
+    // return result.id;
+  }
+
+  /**
    * review  card
    * @param card
    * @returns card

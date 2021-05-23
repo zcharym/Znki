@@ -11,5 +11,5 @@ export class CardListDto extends CommonListDto
   @Type(() => CardWhereDto)
   where: CardWhereDto;
   // @ApiProperty({ required: true })
-  orderBy: Prisma.Enumerable<Prisma.CardOrderByInput>;
+  orderBy?: Prisma.Enumerable<Prisma.CardOrderByInput>;
 }

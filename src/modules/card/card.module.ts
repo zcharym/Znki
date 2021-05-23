@@ -14,5 +14,6 @@ import { CoreService } from './service/core/core.service';
   imports: [DbModule],
   providers: [TagService, CardService, DeckService, NoteService, CoreService],
   controllers: [TagController, CardController, DeckController, NoteController],
+  exports: [CardService],
 })
 export class CardModule {}

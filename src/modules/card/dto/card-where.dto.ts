@@ -9,13 +9,13 @@ export class CardWhereDto implements Prisma.CardWhereInput {
   @ApiProperty({ type: Number, required: false })
   @IsNumber()
   @IsOptional()
-  templateId: number;
+  templateId?: number;
   @ApiProperty({ type: String, required: false })
   @IsString()
   @IsOptional()
-  title: string;
+  title?: string;
   @ApiProperty({ enum: CardStatusEnum, required: false })
   @IsEnum(CardStatusEnum)
   @IsOptional()
-  status: CardStatusEnum;
+  status?: CardStatusEnum;
 }
