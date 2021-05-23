@@ -14,6 +14,7 @@ import { CommonModule } from './common/common.module';
 import { ObsModule } from './modules/obs/obs.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
+import { NotionModule } from './modules/notion/notion.module';
 
 const ENV = process.env.NODE_ENV;
 const configPath = ENV === 'production' ? '.env.prod' : '.env';
@@ -49,6 +50,7 @@ const configPath = ENV === 'production' ? '.env.prod' : '.env';
     AuthModule,
     CommonModule,
     ObsModule,
+    NotionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
