@@ -41,6 +41,7 @@ const configPath = ENV === 'production' ? '.env.prod' : '.env';
       pinoHttp: {
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
         prettyPrint: true,
+        autoLogging: false,
       },
     }),
     CardModule,
