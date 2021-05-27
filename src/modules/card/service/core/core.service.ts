@@ -9,7 +9,7 @@ export class CoreService {
   /**
    * update card due date
    * @param card
-   * @param status
+   * @param statusEnum
    *
    */
   review(card: Card, statusEnum: ReviewStatusEnum): Card {

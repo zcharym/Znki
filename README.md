@@ -47,7 +47,8 @@ $ npm run test:cov
 
 ## Contact Me
 
-- Twitter - [ZcharyMa](https://twitter.com/zcharyma)
+- @Twitter/[ZcharyMa](https://twitter.com/zcharyma)
+- @[Mail](mailto:zcharyma@gmail.com)
 
 ## License
 

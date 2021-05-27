@@ -60,17 +60,17 @@ export class CardService {
 
   /**
    * review  card
-   * @param card
    * @returns card
+   * @param cardId
+   * @param status
    */
   async reviewCard(cardId: number, status: ReviewStatusEnum): Promise<Card> {
     const card = await this.db.card.findUnique({ where: { id: cardId } });
     const updated = this.coreService.review(card, status);
-    const result = await this.db.card.update({
+    return this.db.card.update({
       where: { id: card.id },
       data: updated,
     });
-    return result;
   }
 
   /**
