@@ -34,7 +34,7 @@ export class ObsService implements OnModuleInit, OnModuleDestroy {
     const clientInfo = {
       access_key_id: this.configService.get<string>('ACCESS_KEY_ID'),
       secret_access_key: this.configService.get<string>('SECRET_ACCESS_KEY'),
-      server: this.configService.get<string>('SERVER'),
+      server: this.configService.get<string>('OSS_SERVER'),
     };
     if (
       !clientInfo.access_key_id ||
