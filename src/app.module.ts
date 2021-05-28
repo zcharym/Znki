@@ -15,6 +15,7 @@ import { ObsModule } from './modules/obs/obs.module';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
 import { NotionModule } from './modules/notion/notion.module';
+import { RedisModule } from 'nestjs-redis';
 
 const ENV = process.env.NODE_ENV;
 const configPath = ENV === 'production' ? '.env.prod' : '.env';
@@ -25,6 +26,17 @@ const configPath = ENV === 'production' ? '.env.prod' : '.env';
     ConfigModule.forRoot({
       envFilePath: [configPath],
       isGlobal: true,
+    }),
+    RedisModule.forRootAsync({
+      useFactory: (config: ConfigService) => ({
+        host: config.get<string>('REDIS_SERVER'),
+        password: config.get<string>('REDIS_PWD'),
+        port: config.get<number>('REDIS_PORT'),
+        keyPrefix: 'znki',
+        db: config.get<number>('REDIS_DB'),
+      }),
+      inject: [ConfigService],
+      imports: [ConfigModule],
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'static'),
