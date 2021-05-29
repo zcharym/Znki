@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Card } from '@prisma/client';
 import { Logger } from 'nestjs-pino';
 import { ReviewStatusEnum } from 'src/shared/consts/common.const';
@@ -66,11 +66,14 @@ export class CardService {
    */
   async reviewCard(cardId: number, status: ReviewStatusEnum): Promise<Card> {
     const card = await this.db.card.findUnique({ where: { id: cardId } });
-    const updated = this.coreService.review(card, status);
-    return this.db.card.update({
-      where: { id: card.id },
-      data: updated,
-    });
+    if (card) {
+      const updated = this.coreService.review(card, status);
+      return this.db.card.update({
+        where: { id: card.id },
+        data: updated,
+      });
+    }
+    throw new BadRequestException('Card not found');
   }
 
   /**
