@@ -10,15 +10,15 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CardService } from '../service/card.service';
 import { JWTGuard } from '../../auth/jwt.guard';
 import { CreateCardDto } from '../dto/create-card.dto';
 import { CardListDto } from '../dto/card-list.dto';
-import { CardResListDto } from '../dto/card-res.dto';
 import { ReviewCardDto } from '../dto/review-card.dto';
 import { CommonIdSetDto } from 'src/shared/dto/common.dto';
 import { UpdateCardDto } from '../dto/update-card.dto';
+import { RetrieveReviewCardDto } from '../dto/query-review-cards.dto';
 
 /**
  * TODO use guard to specific module
@@ -67,6 +67,15 @@ export class CardController {
   })
   async addCard(@Body() body: CreateCardDto) {
     return this.cardService.addCard(body);
+  }
+
+  @Post('/retrieve')
+  @ApiOperation({
+    summary: 'retrieve cards to review',
+    description: 'version 0.1',
+  })
+  async getReviewCards(@Body() body: RetrieveReviewCardDto) {
+    return this.cardService.getReviewCards(body.deckId, body.length);
   }
 
   @Post('/review')

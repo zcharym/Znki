@@ -74,6 +74,29 @@ export class CardService {
   }
 
   /**
+   *
+   * get cards to review. filtered by deckId and day is less than current day.
+   * @param deckId
+   * @param length how many cards to review
+   * @returns  cards
+   */
+  async getReviewCards(deckId: number, length: number): Promise<Card[]> {
+    return this.db.card.findMany({
+      where: {
+        deckId,
+        due: {
+          lte: new Date(),
+        },
+      },
+      orderBy: {
+        title: 'asc',
+      },
+      take: length,
+      include: { notes: true },
+    });
+  }
+
+  /**
    * get cards by deckId with count
    * @returns
    * @version 0.2

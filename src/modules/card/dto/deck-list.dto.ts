@@ -12,6 +12,7 @@ export class DeckListDto implements Prisma.DeckFindManyArgs {
     return val;
   })
   take: number;
+
   @ApiProperty({ required: true })
   @IsNumber()
   @Transform(val => {
@@ -21,10 +22,13 @@ export class DeckListDto implements Prisma.DeckFindManyArgs {
     return val;
   })
   skip: number;
+
   @ApiProperty()
   where: Prisma.DeckWhereInput;
+
   @ApiProperty()
   orderBy: Prisma.Enumerable<Prisma.DeckOrderByInput>;
+
   cursor;
   distinct;
 }

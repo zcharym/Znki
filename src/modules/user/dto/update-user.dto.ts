@@ -1,5 +1,4 @@
-import { Transform } from 'class-transformer';
-import { IsOptional, IsString, IsUrl, IsNumber } from 'class-validator';
+import { IsOptional, IsString, IsUrl } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { User } from '@prisma/client';
 
