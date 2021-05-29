@@ -23,7 +23,7 @@ export class CoreService {
       },
       status,
     );
-    const due = dayjs(card.due)
+    const due = dayjs(new Date())
       .add(interval, 'day')
       .toDate();
 

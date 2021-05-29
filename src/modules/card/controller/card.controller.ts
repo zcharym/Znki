@@ -74,7 +74,7 @@ export class CardController {
     summary: 'retrieve cards to review',
     description: 'version 0.1',
   })
-  async getReviewCards(@Body() body: RetrieveReviewCardDto) {
+  async retrieveReviewCards(@Body() body: RetrieveReviewCardDto) {
     return this.cardService.getReviewCards(body.deckId, body.length);
   }
 
