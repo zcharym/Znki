@@ -1,0 +1,27 @@
+info:
+  contact: {}
+paths:
+  /hello:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        api-test
+        do ping
+      parameters:
+      - description: username
+        in: path
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+swagger: "2.0"
