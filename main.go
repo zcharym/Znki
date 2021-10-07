@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	_ "github.com/znkisoft/znki/db"
 	"github.com/znkisoft/znki/docs"
+	_ "github.com/znkisoft/znki/pkg/db"
 	"net/http"
 )
 
