@@ -17,15 +17,24 @@ var doc = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Zchary",
+            "url": "https://github.com/zchary-ma",
+            "email": "zcharyma@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/hello": {
-            "post": {
-                "description": "api-test\ndo ping",
+        "/decks": {
+            "get": {
+                "description": "list decks from user",
                 "consumes": [
                     "application/json"
                 ],
@@ -33,25 +42,66 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "example"
+                    "Deck"
                 ],
-                "summary": "ping example",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "username",
-                        "name": "username",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
+                "summary": "list decks from user",
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
                         "schema": {
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "user register",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "list decks from user",
+                "parameters": [
+                    {
+                        "description": "user info",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.RegisterParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"success\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.RegisterParam": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
                 }
             }
         }
@@ -69,12 +119,12 @@ type swaggerInfo struct {
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = swaggerInfo{
-	Version:     "",
+	Version:     "0.1",
 	Host:        "",
 	BasePath:    "",
 	Schemes:     []string{},
-	Title:       "",
-	Description: "",
+	Title:       "Znki API doc",
+	Description: "Znki API documentation",
 }
 
 type s struct{}
