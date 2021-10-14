@@ -19,56 +19,56 @@ const (
 )
 
 type Model struct {
-	ID        string `gorm:"primaryKey"`
-	UpdatedAt time.Time
-	CreatedAt time.Time
+	ID        string    `json:"id" gorm:"primaryKey"`
+	UpdatedAt time.Time `json:"updated_at" gorm:"type:datetime not null default CURRENT_TIMESTAMP"`
+	CreatedAt time.Time `json:"created_at" gorm:"type:datetime not null default CURRENT_TIMESTAMP"`
 }
 
 type User struct {
 	Model
-	Name     string
-	Avatar   string
-	Phone    string
-	Email    string
-	Password string
+	Name     string `json:"name"`
+	Avatar   string `json:"avatar"`
+	Phone    string `json:"phone"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
 
 type Deck struct {
 	Model
-	Pid      string
-	Name     string
-	UserID   string
-	Desc     string
-	IsPublic bool
+	Pid      string `json:"pid"`
+	Name     string `json:"name"`
+	UserID   string `json:"user_id"`
+	Desc     string `json:"desc"`
+	IsPublic bool   `json:"is_public"`
 }
 
 type Card struct {
 	Model
-	DeckID   string
-	Due      time.Time
-	Reviews  int
-	Tittle   string
-	Status   CardStatus
-	Interval int
-	Efactor  float64
+	DeckID   string     `json:"deck_id"`
+	Due      time.Time  `json:"due"`
+	Reviews  int        `json:"reviews"`
+	Tittle   string     `json:"tittle"`
+	Status   CardStatus `json:"status"`
+	Interval int        `json:"interval"`
+	Efactor  float64    `json:"efactor"`
 }
 
 type Note struct {
 	Model
-	CardID  string
-	Content string
-	Type    NoteType
+	CardID  string   `json:"card_id"`
+	Content string   `json:"content"`
+	Type    NoteType `json:"type"`
 }
 
 type Tag struct {
 	Model
-	Pid string
-	Key string
+	Pid string `json:"pid"`
+	Key string `json:"key"`
 }
 
 type Storage struct {
 	Model
-	URL      string
-	MIMEType string
-	UserID   string
+	URL      string `json:"url"`
+	MIMEType string `json:"mime_type"`
+	UserID   string `json:"user_id"`
 }

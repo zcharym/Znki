@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"log"
 )
 
 func Setup() {
@@ -12,6 +13,13 @@ func Setup() {
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err.Error())
-		panic("Failed to connect to database")
+		log.Panic("Failed to connect to database")
+	}
+}
+
+func DoMigration() {
+	err := db.AutoMigrate(&User{}, &Deck{}, &Card{}, &Note{}, &Storage{}, &Tag{})
+	if err != nil {
+		log.Panic("auto miragtion error occurred")
 	}
 }
