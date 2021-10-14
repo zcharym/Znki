@@ -19,11 +19,37 @@ func main() {
 	api := router.Group("/api")
 	{
 		// Add /hello GET route to router and define route handler function
-		api.GET("/hello", func(ctx *gin.Context) {
+		api.GET("/ping", func(ctx *gin.Context) {
 			ctx.JSON(200, gin.H{"msg": "world"})
 		})
 
-		api.POST("/hello", HelloPost)
+		// Auth
+		api.GET("/token")
+		api.POST("/register")
+		api.POST("/logout")
+		api.POST("/login")
+
+		// Deck
+		api.GET("/decks")
+		api.DELETE("/decks/:id")
+		api.POST("/decks/add")
+
+		// Card
+		api.PUT("/cards")
+		api.DELETE("/cards")
+		api.POST("/cards")
+		api.GET("/cards/:id")
+		api.POST("/cards/add")
+		api.POST("/cards/review")
+
+		// Tag
+		api.GET("/tags")
+		api.POST("/tags/add")
+		api.DELETE("/tags/:id")
+		api.PUT("/tags/:id")
+
+		// Note
+		api.POST("/note")
 	}
 
 	// NotFound router
@@ -36,19 +62,4 @@ func main() {
 	router.Run(":" + port)
 
 	fmt.Printf("server is running on port %s", port)
-}
-
-// HelloPost godoc
-// @Description api-test
-// @Param   username     path    string     true        "username"
-// @Summary ping example
-// @Description do ping
-// @Tags example
-// @Accept json
-// @Produce json
-// @Success 200 {string} Helloworld
-// @Router /hello [post]
-func HelloPost(c *gin.Context) {
-	username := c.Param("username")
-	c.String(http.StatusOK, fmt.Sprintf("Hello %s", username))
 }
