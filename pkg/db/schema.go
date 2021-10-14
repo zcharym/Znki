@@ -1,7 +1,6 @@
 package db
 
 import (
-	"gorm.io/gorm"
 	"time"
 )
 
@@ -19,15 +18,14 @@ const (
 	IMAGE          = "image"
 )
 
-type BaseModel struct {
+type Model struct {
 	ID        string `gorm:"primaryKey"`
 	UpdatedAt time.Time
 	CreatAt   time.Time
 }
 
 type User struct {
-	gorm.Model
-	BaseModel
+	Model
 	Name     string
 	Avatar   string
 	Phone    string
@@ -36,7 +34,7 @@ type User struct {
 }
 
 type Deck struct {
-	gorm.Model
+	Model
 	Pid      string
 	Name     string
 	UserID   string
@@ -45,7 +43,7 @@ type Deck struct {
 }
 
 type Card struct {
-	gorm.Model
+	Model
 	DeckID   string
 	Due      time.Time
 	Reviews  int
@@ -56,20 +54,20 @@ type Card struct {
 }
 
 type Note struct {
-	gorm.Model
+	Model
 	CardID  string
 	Content string
 	Type    NoteType
 }
 
 type Tag struct {
-	gorm.Model
+	Model
 	Pid string
 	Key string
 }
 
 type Storage struct {
-	gorm.Model
+	Model
 	URL      string
 	MIMEType string
 	UserID   string
