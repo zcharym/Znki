@@ -6,9 +6,15 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/znkisoft/znki/docs"
+	"github.com/znkisoft/znki/pkg/db"
 	_ "github.com/znkisoft/znki/pkg/db"
+	"github.com/znkisoft/znki/pkg/handler"
 	"net/http"
 )
+
+func init() {
+	db.Setup()
+}
 
 func main() {
 	// Creates default gin router with Logger and Recovery middleware already attached
@@ -30,7 +36,7 @@ func main() {
 		api.POST("/login")
 
 		// Deck
-		api.GET("/decks")
+		api.GET("/decks", handler.ListDeck)
 		api.DELETE("/decks/:id")
 		api.POST("/decks/add")
 

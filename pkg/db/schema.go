@@ -21,7 +21,7 @@ const (
 type Model struct {
 	ID        string `gorm:"primaryKey"`
 	UpdatedAt time.Time
-	CreatAt   time.Time
+	CreatedAt time.Time
 }
 
 type User struct {
