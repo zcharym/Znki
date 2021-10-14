@@ -29,7 +29,7 @@ type User struct {
 	Name     string `json:"name"`
 	Avatar   string `json:"avatar"`
 	Phone    string `json:"phone"`
-	Email    string `json:"email"`
+	Email    string `json:"email" gorm:"unique"`
 	Password string `json:"password"`
 }
 

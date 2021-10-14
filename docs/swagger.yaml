@@ -1,27 +1,61 @@
+definitions:
+  handler.RegisterParam:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    type: object
 info:
-  contact: {}
+  contact:
+    email: zcharyma@gmail.com
+    name: Zchary
+    url: https://github.com/zchary-ma
+  description: Znki API documentation
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Znki API doc
+  version: "0.1"
 paths:
-  /hello:
-    post:
+  /decks:
+    get:
       consumes:
       - application/json
-      description: |-
-        api-test
-        do ping
-      parameters:
-      - description: username
-        in: path
-        name: username
-        required: true
-        type: string
+      description: list decks from user
       produces:
       - application/json
       responses:
         "200":
-          description: OK
+          description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
-      summary: ping example
+      summary: list decks from user
       tags:
-      - example
+      - Deck
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: user register
+      parameters:
+      - description: user info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handler.RegisterParam'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: list decks from user
+      tags:
+      - User
 swagger: "2.0"

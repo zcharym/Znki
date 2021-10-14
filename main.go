@@ -16,6 +16,19 @@ func init() {
 	db.Setup()
 }
 
+// @title Znki API doc
+// @version 0.1
+// @description Znki API documentation
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name Zchary
+// @contact.url https://github.com/zchary-ma
+// @contact.email zcharyma@gmail.com
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// // @host example.com
 func main() {
 	// Creates default gin router with Logger and Recovery middleware already attached
 	router := gin.Default()
@@ -29,9 +42,9 @@ func main() {
 			ctx.JSON(200, gin.H{"msg": "world"})
 		})
 
-		// Auth
+		// Auth & User
 		api.GET("/token")
-		api.POST("/register")
+		api.POST("/register", handler.UserHandler{}.Register)
 		api.POST("/logout")
 		api.POST("/login")
 
