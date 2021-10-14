@@ -19,69 +19,58 @@ const (
 	IMAGE          = "image"
 )
 
-type User struct {
-	gorm.Model
+type BaseModel struct {
 	ID        string `gorm:"primaryKey"`
-	Name      string
-	Avatar    string
-	Phone     string
-	Email     string
 	UpdatedAt time.Time
 	CreatAt   time.Time
-	Password  string
+}
+
+type User struct {
+	gorm.Model
+	BaseModel
+	Name     string
+	Avatar   string
+	Phone    string
+	Email    string
+	Password string
 }
 
 type Deck struct {
 	gorm.Model
-	ID        string `gorm:"primaryKey"`
-	Pid       string
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	Name      string
-	UserID    string
-	Desc      string
-	IsPublic  bool
+	Pid      string
+	Name     string
+	UserID   string
+	Desc     string
+	IsPublic bool
 }
 
 type Card struct {
 	gorm.Model
-	ID        string `gorm:"primaryKey"`
-	DeckID    string
-	Due       time.Time
-	Reviews   int
-	Tittle    string
-	Status    CardStatus
-	Interval  int
-	Efactor   float64
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	DeckID   string
+	Due      time.Time
+	Reviews  int
+	Tittle   string
+	Status   CardStatus
+	Interval int
+	Efactor  float64
 }
 
 type Note struct {
 	gorm.Model
-	ID        string `gorm:"primaryKey"`
-	CardID    string
-	Content   string
-	Type      NoteType
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	CardID  string
+	Content string
+	Type    NoteType
 }
 
 type Tag struct {
 	gorm.Model
-	ID        string `gorm:"primaryKey"`
-	Pid       string
-	Key       string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Pid string
+	Key string
 }
 
 type Storage struct {
 	gorm.Model
-	ID        string `gorm:"primaryKey"`
-	URL       string
-	MIMEType  string
-	UserID    string
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	URL      string
+	MIMEType string
+	UserID   string
 }
