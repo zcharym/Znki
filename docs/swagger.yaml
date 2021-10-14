@@ -1,4 +1,23 @@
 definitions:
+  db.Deck:
+    properties:
+      created_at:
+        type: string
+      desc:
+        type: string
+      id:
+        type: string
+      is_public:
+        type: boolean
+      name:
+        type: string
+      pid:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
   handler.RegisterParam:
     properties:
       email:
@@ -25,7 +44,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: list decks from user
+      description: get deck list
       produces:
       - application/json
       responses:
@@ -33,9 +52,82 @@ paths:
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
-      summary: list decks from user
+      summary: get deck list
       tags:
       - Deck
+  /decks/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete deck by deck id
+      parameters:
+      - description: Deck ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: delete deck by deck id
+      tags:
+      - Deck
+  /decks/add:
+    post:
+      consumes:
+      - application/json
+      description: create deck
+      parameters:
+      - description: deck info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Deck'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: create deck
+      tags:
+      - Deck
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: login
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: login
+      tags:
+      - User
+  /logout:
+    post:
+      consumes:
+      - application/json
+      description: logout
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: logout
+      tags:
+      - User
   /register:
     post:
       consumes:
@@ -56,6 +148,21 @@ paths:
           schema:
             type: string
       summary: list decks from user
+      tags:
+      - User
+  /user:
+    put:
+      consumes:
+      - application/json
+      description: update user info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: update user info
       tags:
       - User
 swagger: "2.0"

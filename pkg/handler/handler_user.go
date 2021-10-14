@@ -12,7 +12,6 @@ type IUserHandler interface {
 	Register(ctx *gin.Context)
 	Login(ctx *gin.Context)
 	Logout(ctx *gin.Context)
-	CreateUser(ctx *gin.Context)
 	UpdateUser(ctx *gin.Context)
 }
 
@@ -41,18 +40,41 @@ func (h UserHandler) Register(c *gin.Context) {
 	}
 }
 
+// Login
+// @Tags User
+// @Accept json
+// @Produce json
+// @Router /login [post]
+// TODO @param body body handler.RegisterParam true "user info"
+// @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
+// @Description login
+// @Summary login
 func (h UserHandler) Login(c *gin.Context) {
 	panic("implement me")
 }
 
+// Logout
+// @Tags User
+// @Accept json
+// @Produce json
+// @Router /logout [post]
+// TODO @param body body handler.RegisterParam true "user info"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
+// @Description logout
+// @Summary logout
 func (h UserHandler) Logout(c *gin.Context) {
 	panic("implement me")
 }
 
-func (h UserHandler) CreateUser(c *gin.Context) {
-	panic("implement me")
-}
-
+// UpdateUser
+// @Tags User
+// @Accept json
+// @Produce json
+// @Router /user [put]
+// TODO @param body body handler.RegisterParam true "user info"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
+// @Description update user info
+// @Summary update user info
 func (h UserHandler) UpdateUser(c *gin.Context) {
 	panic("implement me")
 }

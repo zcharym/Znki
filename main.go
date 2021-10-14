@@ -49,9 +49,9 @@ func main() {
 		api.POST("/login")
 
 		// Deck
-		api.GET("/decks", handler.ListDeck)
-		api.DELETE("/decks/:id")
-		api.POST("/decks/add")
+		api.GET("/decks", handler.DeckHandler{}.ListDeck)
+		api.DELETE("/decks/:id", handler.DeckHandler{}.DeleteDeck)
+		api.POST("/decks/add", handler.DeckHandler{}.CreateDeck)
 
 		// Card
 		api.PUT("/cards")
