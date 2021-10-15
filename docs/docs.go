@@ -34,6 +34,11 @@ var doc = `{
     "paths": {
         "/cards": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "update card",
                 "consumes": [
                     "application/json"
@@ -66,6 +71,11 @@ var doc = `{
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "usually get cards by deck id",
                 "consumes": [
                     "application/json"
@@ -114,6 +124,11 @@ var doc = `{
         },
         "/cards/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create card",
                 "consumes": [
                     "application/json"
@@ -148,6 +163,11 @@ var doc = `{
         },
         "/cards/delete": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "batch remove cards",
                 "consumes": [
                     "application/json"
@@ -182,6 +202,11 @@ var doc = `{
         },
         "/cards/review": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "review card",
                 "consumes": [
                     "application/json"
@@ -216,6 +241,11 @@ var doc = `{
         },
         "/cards/{id}": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "get card by card id",
                 "consumes": [
                     "application/json"
@@ -285,6 +315,11 @@ var doc = `{
         },
         "/decks/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create deck",
                 "consumes": [
                     "application/json"
@@ -319,6 +354,11 @@ var doc = `{
         },
         "/decks/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "delete deck by deck id",
                 "consumes": [
                     "application/json"
@@ -385,6 +425,11 @@ var doc = `{
         },
         "/logout": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "logout",
                 "consumes": [
                     "application/json"
@@ -408,6 +453,11 @@ var doc = `{
         },
         "/refresh": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "logout",
                 "consumes": [
                     "application/json"
@@ -465,6 +515,11 @@ var doc = `{
         },
         "/tags": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create tag",
                 "consumes": [
                     "application/json"
@@ -497,6 +552,11 @@ var doc = `{
         },
         "/tags/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create tag",
                 "consumes": [
                     "application/json"
@@ -531,6 +591,11 @@ var doc = `{
         },
         "/tags/{id}": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "edit tag",
                 "consumes": [
                     "application/json"
@@ -570,6 +635,11 @@ var doc = `{
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "remove tag",
                 "consumes": [
                     "application/json"
@@ -602,6 +672,11 @@ var doc = `{
         },
         "/user": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "update user info",
                 "consumes": [
                     "application/json"

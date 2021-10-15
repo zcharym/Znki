@@ -142,6 +142,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: usually get cards by deck id
       tags:
       - Card
@@ -163,6 +165,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: update card
       tags:
       - Card
@@ -184,6 +188,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: get card by card id
       tags:
       - Card
@@ -206,6 +212,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: create card
       tags:
       - Card
@@ -228,6 +236,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: batch remove cards
       tags:
       - Card
@@ -250,6 +260,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: review card
       tags:
       - Card
@@ -294,6 +306,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: delete deck by deck id
       tags:
       - Deck
@@ -316,6 +330,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: create deck
       tags:
       - Deck
@@ -353,6 +369,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: logout
       tags:
       - auth
@@ -368,6 +386,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: logout
       tags:
       - auth
@@ -411,6 +431,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: create tag
       tags:
       - Tag
@@ -432,6 +454,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: remove tag
       tags:
       - Tag
@@ -458,6 +482,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: edit tag
       tags:
       - Tag
@@ -480,6 +506,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: create tag
       tags:
       - Tag
@@ -495,6 +523,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: update user info
       tags:
       - User

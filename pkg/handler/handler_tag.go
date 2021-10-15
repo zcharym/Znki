@@ -20,6 +20,8 @@ type Tag struct{}
 // CreateTag
 // @Tags Tag
 // @Accept json
+// @Produce json
+// @Security JWTAuth
 // @Router /tags/add [post]
 // @param body body db.Tag true "tag info"
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"

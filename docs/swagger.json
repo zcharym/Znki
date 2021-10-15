@@ -18,6 +18,11 @@
     "paths": {
         "/cards": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "update card",
                 "consumes": [
                     "application/json"
@@ -50,6 +55,11 @@
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "usually get cards by deck id",
                 "consumes": [
                     "application/json"
@@ -98,6 +108,11 @@
         },
         "/cards/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create card",
                 "consumes": [
                     "application/json"
@@ -132,6 +147,11 @@
         },
         "/cards/delete": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "batch remove cards",
                 "consumes": [
                     "application/json"
@@ -166,6 +186,11 @@
         },
         "/cards/review": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "review card",
                 "consumes": [
                     "application/json"
@@ -200,6 +225,11 @@
         },
         "/cards/{id}": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "get card by card id",
                 "consumes": [
                     "application/json"
@@ -269,6 +299,11 @@
         },
         "/decks/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create deck",
                 "consumes": [
                     "application/json"
@@ -303,6 +338,11 @@
         },
         "/decks/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "delete deck by deck id",
                 "consumes": [
                     "application/json"
@@ -369,6 +409,11 @@
         },
         "/logout": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "logout",
                 "consumes": [
                     "application/json"
@@ -392,6 +437,11 @@
         },
         "/refresh": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "logout",
                 "consumes": [
                     "application/json"
@@ -449,6 +499,11 @@
         },
         "/tags": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create tag",
                 "consumes": [
                     "application/json"
@@ -481,6 +536,11 @@
         },
         "/tags/add": {
             "post": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "create tag",
                 "consumes": [
                     "application/json"
@@ -515,6 +575,11 @@
         },
         "/tags/{id}": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "edit tag",
                 "consumes": [
                     "application/json"
@@ -554,6 +619,11 @@
                 }
             },
             "delete": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "remove tag",
                 "consumes": [
                     "application/json"
@@ -586,6 +656,11 @@
         },
         "/user": {
             "put": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "update user info",
                 "consumes": [
                     "application/json"
