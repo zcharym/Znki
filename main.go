@@ -29,6 +29,10 @@ func init() {
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
+// @securityDefinitions.apikey JWTAuth
+// @in header
+// @name Authorization
+
 // // @host example.com
 func main() {
 	// Creates default gin router with Logger and Recovery middleware already attached

@@ -19,6 +19,7 @@ type Card struct{}
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards/add [post]
 // @param body body db.Card true "card info"
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -32,6 +33,7 @@ func (card Card) CreateCard(c *gin.Context) {
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards/review [put]
 // @param body body db.Card true "card info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -45,6 +47,7 @@ func (card Card) ReviewCard(c *gin.Context) {
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards [post]
 // @param body body db.Card true "card info"
 // @Param skip query number true "0"
@@ -60,6 +63,7 @@ func (card Card) GetCards(c *gin.Context) {
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards/{id} [get]
 // @param id path string true "Card ID"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -73,6 +77,7 @@ func (card Card) GetCardByID(c *gin.Context) {
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards [put]
 // @param body body db.Card true "card info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -86,6 +91,7 @@ func (card Card) UpdateCard(c *gin.Context) {
 // @Tags Card
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /cards/delete [post]
 // @param body body handler.IdSet true "card ids"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"

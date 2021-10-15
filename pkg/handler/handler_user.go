@@ -80,6 +80,7 @@ func (h User) Login(c *gin.Context) {
 // @Tags auth
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /logout [post]
 // TODO @param body body handler.RegisterParam true "user info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -93,6 +94,7 @@ func (h User) Logout(c *gin.Context) {
 // @Tags auth
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /refresh [post]
 // TODO @param body body handler.RegisterParam true "user info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -106,6 +108,7 @@ func (h User) Refresh(c *gin.Context) {
 // @Tags User
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /user [put]
 // TODO @param body body handler.RegisterParam true "user info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"

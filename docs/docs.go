@@ -248,6 +248,11 @@ var doc = `{
         },
         "/decks": {
             "get": {
+                "security": [
+                    {
+                        "JWTAuth": []
+                    }
+                ],
                 "description": "get deck list by user id",
                 "consumes": [
                     "application/json"
@@ -774,6 +779,13 @@ var doc = `{
                     "type": "string"
                 }
             }
+        }
+    },
+    "securityDefinitions": {
+        "JWTAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
     }
 }`

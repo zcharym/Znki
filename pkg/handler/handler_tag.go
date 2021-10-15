@@ -20,7 +20,6 @@ type Tag struct{}
 // CreateTag
 // @Tags Tag
 // @Accept json
-// @Produce json
 // @Router /tags/add [post]
 // @param body body db.Tag true "tag info"
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -49,6 +48,7 @@ func (t Tag) CreateTag(c *gin.Context) {
 // @Tags Tag
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /tags [get]
 // @param card_id query string true "card_id"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -76,6 +76,7 @@ func (t Tag) GetTags(c *gin.Context) {
 // @Tags Tag
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /tags/{id} [put]
 // @param body body db.Tag true "tag info"
 // @param id path string true "Tag ID"
@@ -103,6 +104,7 @@ func (t Tag) EditTag(c *gin.Context) {
 // @Tags Tag
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /tags/{id} [delete]
 // @param id path string true "Tag ID"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"

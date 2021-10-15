@@ -5,6 +5,27 @@ import (
 	"gorm.io/gorm"
 )
 
+func AddCard(card Card, note Note) error {
+	return nil
+}
+
+func ReviewCard() error {
+	return nil
+}
+func ListCard(skip, take int, cond Card) error {
+
+	return nil
+}
+func DeleteCards(cardIDs string) error {
+	return nil
+}
+func GetCardById() error {
+	return nil
+}
+func UpdateCard() error {
+	return nil
+}
+
 func IsCardExists(cardID string) (bool, error) {
 	var card Card
 	// err := db.Select("id").Where("id = ? AND deleted_on = ? ", cardID, 0).First(&card).Error

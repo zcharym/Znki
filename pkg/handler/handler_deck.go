@@ -20,6 +20,7 @@ type Deck struct{}
 // @Tags Deck
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /decks/add [post]
 // @param body body db.Deck true "deck info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
@@ -44,6 +45,7 @@ func (d Deck) CreateDeck(c *gin.Context) {
 // @Tags Deck
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /decks [get]
 // @Param user_id query string true "user_id"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
@@ -64,6 +66,7 @@ func (d Deck) ListDeck(c *gin.Context) {
 // @Tags Deck
 // @Accept json
 // @Produce json
+// @Security JWTAuth
 // @Router /decks/{id} [delete]
 // @param id path string true "Deck ID"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"

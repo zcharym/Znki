@@ -271,6 +271,8 @@ paths:
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
+      security:
+      - JWTAuth: []
       summary: get deck list by user id
       tags:
       - Deck
@@ -496,4 +498,9 @@ paths:
       summary: update user info
       tags:
       - User
+securityDefinitions:
+  JWTAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"
