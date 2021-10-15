@@ -62,10 +62,10 @@ func main() {
 		api.POST("/cards/review")
 
 		// Tag
-		api.GET("/tags")
-		api.POST("/tags/add")
-		api.DELETE("/tags/:id")
-		api.PUT("/tags/:id")
+		api.GET("/tags", handler.Tag{}.GetTags)
+		api.POST("/tags/add", handler.Tag{}.CreateTag)
+		api.DELETE("/tags/:id", handler.Tag{}.RemoveTag)
+		api.PUT("/tags/:id", handler.Tag{}.EditTag)
 
 		// Note
 		api.POST("/note")

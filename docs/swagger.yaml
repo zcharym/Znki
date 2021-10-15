@@ -18,6 +18,19 @@ definitions:
       user_id:
         type: string
     type: object
+  db.Tag:
+    properties:
+      cid:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      key:
+        type: string
+      updated_at:
+        type: string
+    type: object
   handler.RegisterParam:
     properties:
       email:
@@ -150,6 +163,96 @@ paths:
       summary: list decks from user
       tags:
       - User
+  /tags:
+    get:
+      consumes:
+      - application/json
+      description: create tag
+      parameters:
+      - description: card_id
+        in: query
+        name: card_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: create tag
+      tags:
+      - Tag
+  /tags/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: remove tag
+      parameters:
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: remove tag
+      tags:
+      - Tag
+    put:
+      consumes:
+      - application/json
+      description: edit tag
+      parameters:
+      - description: tag info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Tag'
+      - description: Tag ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: edit tag
+      tags:
+      - Tag
+  /tags/add:
+    post:
+      consumes:
+      - application/json
+      description: create tag
+      parameters:
+      - description: tag info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Tag'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: create tag
+      tags:
+      - Tag
   /user:
     put:
       consumes:
