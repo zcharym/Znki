@@ -45,12 +45,18 @@ func (d Deck) CreateDeck(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Router /decks [get]
+// @Param user_id query string true "user_id"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
-// @Description get deck list
-// @Summary get deck list
+// @Description get deck list by user id
+// @Summary get deck list by user id
 func (d Deck) ListDeck(c *gin.Context) {
 	var decks []db.Deck
-	db.ListDeck(&decks)
+	userID := c.Query("user_id")
+	err := db.ListDeck(&decks, userID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, utils.ErrorResponse(err.Error(), 1000))
+		return
+	}
 	c.JSON(http.StatusOK, utils.OkResponse(decks))
 }
 

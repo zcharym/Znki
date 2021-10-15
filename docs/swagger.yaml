@@ -257,7 +257,13 @@ paths:
     get:
       consumes:
       - application/json
-      description: get deck list
+      description: get deck list by user id
+      parameters:
+      - description: user_id
+        in: query
+        name: user_id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -265,7 +271,7 @@ paths:
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
-      summary: get deck list
+      summary: get deck list by user id
       tags:
       - Deck
   /decks/{id}:
@@ -382,7 +388,7 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
-      summary: list decks from user
+      summary: user register
       tags:
       - auth
   /tags:

@@ -16,8 +16,12 @@ func CreateDeck(deck *Deck) error {
 	return nil
 }
 
-func ListDeck(decks *[]Deck) {
-	db.Order("created_at desc").Limit(100).Find(decks)
+func ListDeck(decks *[]Deck, userID string) error {
+	result := db.Where("user_id = ?", userID).Order("created_at desc").Limit(100).Find(decks)
+	if err := result.Error; err != nil {
+		return err
+	}
+	return nil
 }
 
 func DeleteDeckByID(deckID string) error {

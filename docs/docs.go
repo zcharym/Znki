@@ -248,7 +248,7 @@ var doc = `{
         },
         "/decks": {
             "get": {
-                "description": "get deck list",
+                "description": "get deck list by user id",
                 "consumes": [
                     "application/json"
                 ],
@@ -258,7 +258,16 @@ var doc = `{
                 "tags": [
                     "Deck"
                 ],
-                "summary": "get deck list",
+                "summary": "get deck list by user id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "user_id",
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
@@ -427,7 +436,7 @@ var doc = `{
                 "tags": [
                     "auth"
                 ],
-                "summary": "list decks from user",
+                "summary": "user register",
                 "parameters": [
                     {
                         "description": "user info",
