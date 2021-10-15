@@ -44,14 +44,14 @@ func main() {
 
 		// Auth & User
 		api.GET("/token")
-		api.POST("/register", handler.UserHandler{}.Register)
+		api.POST("/register", handler.User{}.Register)
 		api.POST("/logout")
 		api.POST("/login")
 
 		// Deck
-		api.GET("/decks", handler.DeckHandler{}.ListDeck)
-		api.DELETE("/decks/:id", handler.DeckHandler{}.DeleteDeck)
-		api.POST("/decks/add", handler.DeckHandler{}.CreateDeck)
+		api.GET("/decks", handler.Deck{}.ListDeck)
+		api.DELETE("/decks/:id", handler.Deck{}.DeleteDeck)
+		api.POST("/decks/add", handler.Deck{}.CreateDeck)
 
 		// Card
 		api.PUT("/cards")

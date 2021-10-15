@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-type IUserHandler interface {
+type IUser interface {
 	Register(ctx *gin.Context)
 	Login(ctx *gin.Context)
 	Logout(ctx *gin.Context)
 	UpdateUser(ctx *gin.Context)
 }
 
-type UserHandler struct{}
+type User struct{}
 
 // Register
 // @Tags User
@@ -26,7 +26,7 @@ type UserHandler struct{}
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description user register
 // @Summary list decks from user
-func (h UserHandler) Register(c *gin.Context) {
+func (h User) Register(c *gin.Context) {
 	var user db.User
 	err := c.ShouldBind(&user)
 	if err != nil {
@@ -49,7 +49,7 @@ func (h UserHandler) Register(c *gin.Context) {
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description login
 // @Summary login
-func (h UserHandler) Login(c *gin.Context) {
+func (h User) Login(c *gin.Context) {
 	panic("implement me")
 }
 
@@ -62,7 +62,7 @@ func (h UserHandler) Login(c *gin.Context) {
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description logout
 // @Summary logout
-func (h UserHandler) Logout(c *gin.Context) {
+func (h User) Logout(c *gin.Context) {
 	panic("implement me")
 }
 
@@ -75,6 +75,6 @@ func (h UserHandler) Logout(c *gin.Context) {
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description update user info
 // @Summary update user info
-func (h UserHandler) UpdateUser(c *gin.Context) {
+func (h User) UpdateUser(c *gin.Context) {
 	panic("implement me")
 }

@@ -8,13 +8,13 @@ import (
 	"net/http"
 )
 
-type IDeckHandler interface {
+type IDeck interface {
 	CreateDeck(c *gin.Context)
 	ListDeck(c *gin.Context)
 	DeleteDeck(c *gin.Context)
 }
 
-type DeckHandler struct{}
+type Deck struct{}
 
 // CreateDeck
 // @Tags Deck
@@ -25,7 +25,7 @@ type DeckHandler struct{}
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description create deck
 // @Summary create deck
-func (d DeckHandler) CreateDeck(c *gin.Context) {
+func (d Deck) CreateDeck(c *gin.Context) {
 	deck := &db.Deck{}
 	err := c.ShouldBind(&deck)
 	if err != nil {
@@ -48,7 +48,7 @@ func (d DeckHandler) CreateDeck(c *gin.Context) {
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
 // @Description get deck list
 // @Summary get deck list
-func (d DeckHandler) ListDeck(c *gin.Context) {
+func (d Deck) ListDeck(c *gin.Context) {
 	var decks []db.Deck
 	db.ListDeck(&decks)
 	c.JSON(http.StatusOK, utils.OkResponse(decks))
@@ -63,7 +63,7 @@ func (d DeckHandler) ListDeck(c *gin.Context) {
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
 // @Description delete deck by deck id
 // @Summary delete deck by deck id
-func (d DeckHandler) DeleteDeck(c *gin.Context) {
+func (d Deck) DeleteDeck(c *gin.Context) {
 	deckID := c.Param("id")
 	if err := db.DeleteDeckByID(deckID); err != nil {
 		c.JSON(http.StatusBadRequest, utils.ErrorResponse(fmt.Sprintf("delete deck by id error:%s", err), 1000))
