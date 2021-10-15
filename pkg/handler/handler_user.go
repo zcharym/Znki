@@ -82,11 +82,11 @@ func (h User) Login(c *gin.Context) {
 // @Produce json
 // @Security JWTAuth
 // @Router /logout [post]
-// TODO @param body body handler.RegisterParam true "user info"
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description logout
 // @Summary logout
 func (h User) Logout(c *gin.Context) {
+	// could be implemented at client
 	panic("implement me")
 }
 
@@ -95,13 +95,34 @@ func (h User) Logout(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Security JWTAuth
-// @Router /refresh [post]
-// TODO @param body body handler.RegisterParam true "user info"
+// @Router /refresh [get]
 // @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description logout
 // @Summary logout
 func (h User) Refresh(c *gin.Context) {
-	panic("implement me")
+	token := c.GetHeader("Authorization")
+	claims, err := auth.ParseToken(token)
+
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, utils.ErrorResponse(err.Error(), 10005))
+		return
+	}
+
+	if time.Unix(claims.ExpiresAt, 0).Sub(time.Now()) > time.Minute*2 {
+		c.JSON(http.StatusBadRequest, utils.ErrorResponse("the token is not expired yet", 10000))
+		return
+	}
+	expirationTime := time.Now().Add(5 * time.Minute)
+	claims.ExpiresAt = expirationTime.Unix()
+	token, err = auth.RefreshToken(claims)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, utils.ErrorResponse(fmt.Sprintf("fresh token error: %v", err), 1000))
+		return
+	}
+
+	output := auth.JWTOutput{Token: token, Expires: expirationTime}
+	c.JSON(http.StatusOK, utils.OkResponse(output))
 }
 
 // UpdateUser

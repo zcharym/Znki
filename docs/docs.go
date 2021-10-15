@@ -452,7 +452,7 @@ var doc = `{
             }
         },
         "/refresh": {
-            "post": {
+            "get": {
                 "security": [
                     {
                         "JWTAuth": []
