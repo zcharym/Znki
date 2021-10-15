@@ -47,7 +47,7 @@ var doc = `{
                 "summary": "update card",
                 "parameters": [
                     {
-                        "description": "tag info",
+                        "description": "card info",
                         "name": "body",
                         "in": "body",
                         "required": true,
@@ -66,7 +66,7 @@ var doc = `{
                 }
             },
             "post": {
-                "description": "get cards by user",
+                "description": "usually get cards by deck id",
                 "consumes": [
                     "application/json"
                 ],
@@ -76,10 +76,10 @@ var doc = `{
                 "tags": [
                     "Card"
                 ],
-                "summary": "get cards by user",
+                "summary": "usually get cards by deck id",
                 "parameters": [
                     {
-                        "description": "tag info",
+                        "description": "card info",
                         "name": "body",
                         "in": "body",
                         "required": true,
@@ -345,9 +345,20 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "auth"
                 ],
                 "summary": "login",
+                "parameters": [
+                    {
+                        "description": "user info",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.LoginParam"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "{\"code\":200,\"data\":{},\"msg\":\"success\"}",
@@ -368,7 +379,30 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "auth"
+                ],
+                "summary": "logout",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"success\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/refresh": {
+            "post": {
+                "description": "logout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
                 ],
                 "summary": "logout",
                 "responses": {
@@ -391,7 +425,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "auth"
                 ],
                 "summary": "list decks from user",
                 "parameters": [
@@ -598,10 +632,22 @@ var doc = `{
                 "interval": {
                     "type": "integer"
                 },
+                "note": {
+                    "$ref": "#/definitions/db.Note"
+                },
+                "note_id": {
+                    "type": "string"
+                },
                 "reviews": {
                     "type": "integer"
                 },
                 "status": {
+                    "type": "string"
+                },
+                "tag": {
+                    "$ref": "#/definitions/db.Tag"
+                },
+                "tag_id": {
                     "type": "string"
                 },
                 "tittle": {
@@ -641,6 +687,29 @@ var doc = `{
                 }
             }
         },
+        "db.Note": {
+            "type": "object",
+            "properties": {
+                "card_id": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
         "db.Tag": {
             "type": "object",
             "properties": {
@@ -669,6 +738,17 @@ var doc = `{
                     "items": {
                         "type": "string"
                     }
+                }
+            }
+        },
+        "handler.LoginParam": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
                 }
             }
         },

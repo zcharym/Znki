@@ -9,6 +9,7 @@ import (
 	"github.com/znkisoft/znki/pkg/db"
 	_ "github.com/znkisoft/znki/pkg/db"
 	"github.com/znkisoft/znki/pkg/handler"
+	"github.com/znkisoft/znki/pkg/middleware"
 	"net/http"
 )
 
@@ -32,10 +33,15 @@ func init() {
 func main() {
 	// Creates default gin router with Logger and Recovery middleware already attached
 	router := gin.Default()
-
 	port := "9000"
-	// Create API route group
+
+	// Auth without jwt
+	router.POST("/api/register", handler.User{}.Register)
+	router.POST("/api/login", handler.User{}.Login)
+
+	// api group with jwt middleware
 	api := router.Group("/api")
+	api.Use(middleware.AuthMiddleware())
 	{
 		// Add /hello GET route to router and define route handler function
 		api.GET("/ping", func(ctx *gin.Context) {
@@ -43,10 +49,8 @@ func main() {
 		})
 
 		// Auth & User
-		api.GET("/token")
-		api.POST("/register", handler.User{}.Register)
-		api.POST("/logout")
-		api.POST("/login")
+		api.GET("/refresh", handler.User{}.Refresh)
+		api.POST("/logout", handler.User{}.Logout)
 
 		// Deck
 		api.GET("/decks", handler.Deck{}.ListDeck)

@@ -9,13 +9,13 @@ type NoteType string
 
 const (
 	NEW      CardStatus = "new"
-	Learning            = "learning"
-	Archived            = "archived"
+	Learning CardStatus = "learning"
+	Archived CardStatus = "archived"
 )
 
 const (
 	TEXT  NoteType = "text"
-	IMAGE          = "image"
+	IMAGE NoteType = "image"
 )
 
 type Model struct {
@@ -51,6 +51,12 @@ type Card struct {
 	Status   CardStatus `json:"status"`
 	Interval int        `json:"interval"`
 	Efactor  float64    `json:"efactor"`
+
+	Note   Note   `json:"note"`
+	NoteID string `json:"note_id" gorm:"index"`
+
+	Tag   Tag    `json:"tag"`
+	TagID string `json:"tag_id" gorm:"index"`
 }
 
 type Note struct {

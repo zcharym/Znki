@@ -13,9 +13,17 @@ definitions:
         type: string
       interval:
         type: integer
+      note:
+        $ref: '#/definitions/db.Note'
+      note_id:
+        type: string
       reviews:
         type: integer
       status:
+        type: string
+      tag:
+        $ref: '#/definitions/db.Tag'
+      tag_id:
         type: string
       tittle:
         type: string
@@ -41,6 +49,21 @@ definitions:
       user_id:
         type: string
     type: object
+  db.Note:
+    properties:
+      card_id:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
   db.Tag:
     properties:
       cid:
@@ -60,6 +83,13 @@ definitions:
         items:
           type: string
         type: array
+    type: object
+  handler.LoginParam:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
     type: object
   handler.RegisterParam:
     properties:
@@ -87,9 +117,9 @@ paths:
     post:
       consumes:
       - application/json
-      description: get cards by user
+      description: usually get cards by deck id
       parameters:
-      - description: tag info
+      - description: card info
         in: body
         name: body
         required: true
@@ -112,7 +142,7 @@ paths:
           description: '{"code":200,"data":{},"msg":"success"}'
           schema:
             type: string
-      summary: get cards by user
+      summary: usually get cards by deck id
       tags:
       - Card
     put:
@@ -120,7 +150,7 @@ paths:
       - application/json
       description: update card
       parameters:
-      - description: tag info
+      - description: card info
         in: body
         name: body
         required: true
@@ -286,6 +316,13 @@ paths:
       consumes:
       - application/json
       description: login
+      parameters:
+      - description: user info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginParam'
       produces:
       - application/json
       responses:
@@ -295,7 +332,7 @@ paths:
             type: string
       summary: login
       tags:
-      - User
+      - auth
   /logout:
     post:
       consumes:
@@ -310,7 +347,22 @@ paths:
             type: string
       summary: logout
       tags:
-      - User
+      - auth
+  /refresh:
+    post:
+      consumes:
+      - application/json
+      description: logout
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: logout
+      tags:
+      - auth
   /register:
     post:
       consumes:
@@ -332,7 +384,7 @@ paths:
             type: string
       summary: list decks from user
       tags:
-      - User
+      - auth
   /tags:
     get:
       consumes:

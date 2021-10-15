@@ -3,9 +3,11 @@ package handler
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/znkisoft/znki/pkg/auth"
 	"github.com/znkisoft/znki/pkg/db"
 	"github.com/znkisoft/znki/pkg/utils"
 	"net/http"
+	"time"
 )
 
 type IUser interface {
@@ -18,14 +20,14 @@ type IUser interface {
 type User struct{}
 
 // Register
-// @Tags User
+// @Tags auth
 // @Accept json
 // @Produce json
 // @Router /register [post]
 // @param body body handler.RegisterParam true "user info"
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description user register
-// @Summary list decks from user
+// @Summary user register
 func (h User) Register(c *gin.Context) {
 	var user db.User
 	err := c.ShouldBind(&user)
@@ -41,20 +43,41 @@ func (h User) Register(c *gin.Context) {
 }
 
 // Login
-// @Tags User
+// @Tags auth
 // @Accept json
 // @Produce json
 // @Router /login [post]
-// TODO @param body body handler.RegisterParam true "user info"
+// @param body body handler.LoginParam true "user info"
 // @Success 201 {string} json "{"code":200,"data":{},"msg":"success"}"
 // @Description login
 // @Summary login
 func (h User) Login(c *gin.Context) {
-	panic("implement me")
+	user := &db.User{}
+	err := c.ShouldBind(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, utils.ErrorResponse("login params not correct", 1000))
+		return
+	}
+
+	user, err = db.ValidateUser(user.Email, user.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, utils.ErrorResponse(err.Error(), 1000))
+		return
+	}
+
+	expires := time.Now().Add(time.Minute * 5)
+	token, err := auth.SignJWTToken(auth.Payload{UserId: user.ID, Username: user.Name}, expires)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, utils.ErrorResponse(err.Error(), 1000))
+		return
+	}
+
+	output := auth.JWTOutput{Token: token, Expires: expires}
+	c.JSON(http.StatusOK, utils.OkResponse(output))
 }
 
 // Logout
-// @Tags User
+// @Tags auth
 // @Accept json
 // @Produce json
 // @Router /logout [post]
@@ -63,6 +86,19 @@ func (h User) Login(c *gin.Context) {
 // @Description logout
 // @Summary logout
 func (h User) Logout(c *gin.Context) {
+	panic("implement me")
+}
+
+// Refresh
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Router /refresh [post]
+// TODO @param body body handler.RegisterParam true "user info"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"success"}"
+// @Description logout
+// @Summary logout
+func (h User) Refresh(c *gin.Context) {
 	panic("implement me")
 }
 
