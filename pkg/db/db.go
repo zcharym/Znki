@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+var db *gorm.DB
+
 func Setup() {
 	var err error
 
