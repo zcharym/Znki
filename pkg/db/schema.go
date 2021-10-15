@@ -62,7 +62,7 @@ type Note struct {
 
 type Tag struct {
 	Model
-	Pid string `json:"pid"`
+	Cid string `json:"cid"`
 	Key string `json:"key"`
 }
 
