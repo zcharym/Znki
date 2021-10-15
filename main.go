@@ -54,12 +54,12 @@ func main() {
 		api.POST("/decks/add", handler.Deck{}.CreateDeck)
 
 		// Card
-		api.PUT("/cards")
-		api.DELETE("/cards")
-		api.POST("/cards")
-		api.GET("/cards/:id")
-		api.POST("/cards/add")
-		api.POST("/cards/review")
+		api.PUT("/cards", handler.Card{}.UpdateCard)
+		api.POST("/cards/delete", handler.Card{}.RemoveCard)
+		api.POST("/cards", handler.Card{}.GetCards)
+		api.GET("/cards/:id", handler.Card{}.GetCardByID)
+		api.POST("/cards/add", handler.Card{}.CreateCard)
+		api.PUT("/cards/review", handler.Card{}.ReviewCard)
 
 		// Tag
 		api.GET("/tags", handler.Tag{}.GetTags)

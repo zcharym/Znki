@@ -1,4 +1,27 @@
 definitions:
+  db.Card:
+    properties:
+      created_at:
+        type: string
+      deck_id:
+        type: string
+      due:
+        type: string
+      efactor:
+        type: number
+      id:
+        type: string
+      interval:
+        type: integer
+      reviews:
+        type: integer
+      status:
+        type: string
+      tittle:
+        type: string
+      updated_at:
+        type: string
+    type: object
   db.Deck:
     properties:
       created_at:
@@ -31,6 +54,13 @@ definitions:
       updated_at:
         type: string
     type: object
+  handler.IdSet:
+    properties:
+      id_set:
+        items:
+          type: string
+        type: array
+    type: object
   handler.RegisterParam:
     properties:
       email:
@@ -53,6 +83,146 @@ info:
   title: Znki API doc
   version: "0.1"
 paths:
+  /cards:
+    post:
+      consumes:
+      - application/json
+      description: get cards by user
+      parameters:
+      - description: tag info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Card'
+      - description: "0"
+        in: query
+        name: skip
+        required: true
+        type: number
+      - description: "20"
+        in: query
+        name: take
+        required: true
+        type: number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: get cards by user
+      tags:
+      - Card
+    put:
+      consumes:
+      - application/json
+      description: update card
+      parameters:
+      - description: tag info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Card'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: update card
+      tags:
+      - Card
+  /cards/{id}:
+    get:
+      consumes:
+      - application/json
+      description: get card by card id
+      parameters:
+      - description: Card ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: get card by card id
+      tags:
+      - Card
+  /cards/add:
+    post:
+      consumes:
+      - application/json
+      description: create card
+      parameters:
+      - description: card info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Card'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: create card
+      tags:
+      - Card
+  /cards/delete:
+    post:
+      consumes:
+      - application/json
+      description: batch remove cards
+      parameters:
+      - description: card ids
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handler.IdSet'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: batch remove cards
+      tags:
+      - Card
+  /cards/review:
+    put:
+      consumes:
+      - application/json
+      description: review card
+      parameters:
+      - description: card info
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/db.Card'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"success"}'
+          schema:
+            type: string
+      summary: review card
+      tags:
+      - Card
   /decks:
     get:
       consumes:

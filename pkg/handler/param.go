@@ -5,3 +5,7 @@ type RegisterParam struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type IdSet struct {
+	IdSet []string `json:"id_set"`
+}
